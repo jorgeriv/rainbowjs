@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rainbow Test Suite</title>
+  <script src="../src/rainbow.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    var mainColor, triad;
+    mainColor = new $rb.Color();
+    mainColor.setRGB(22, 180, 40);
+    triad = new $rb.Harmony('triad', mainColor);
+    console.log(triad.getColorScheme());
+  </script>
+</head>
+<body>
+
+</body>
+</html>
