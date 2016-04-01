@@ -81,7 +81,7 @@ $rb.Color = function(r, g, b){
     g : g || 255,
     b : b || 255
   };
-  this.hsv = rgb2hsv(this.r, this.g, this.b);
+  this.hsv = rgb2hsv(this.rgb.r, this.rgb.g, this.rgb.b);
 };
 
 $rb.Color.prototype.setHSV = function setHSV(h, s, v){
@@ -152,7 +152,7 @@ $rb.Harmony = function(type, mainColor){
   }
 
   angles.forEach((angle)=>{
-    var auxColor = new $rb.Color(this.mainColor.r, this.mainColor.g, this.mainColor.b);
+    var auxColor = new $rb.Color(this.mainColor.rgb.r, this.mainColor.rgb.g, this.mainColor.rgb.b);
     this.auxiliaryColors.push(auxColor.rotateHueWeel(angle));
   });
 };
