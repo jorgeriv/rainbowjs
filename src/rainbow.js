@@ -87,6 +87,7 @@ $rb.Color = function(r, g, b){
 $rb.Color.prototype.setHSV = function setHSV(h, s, v){
   this.hsv = {h: h, s: s, v: v};
   this.rgb = hsv2rgb(h, s, v);
+  return this;
 };
 
 $rb.Color.prototype.getHSV = function getHSV(){
@@ -96,6 +97,7 @@ $rb.Color.prototype.getHSV = function getHSV(){
 $rb.Color.prototype.setRGB= function setRGB(r, g, b){
   this.rgb = {r: r, g: g, b: b};
   this.hsv = rgb2hsv(r, g, b);
+  return this;
 };
 
 $rb.Color.prototype.getRGB = function getRGB(){
@@ -108,6 +110,7 @@ $rb.Color.prototype.setHRGB = function setHex(hexString){
   g = parseInt(hexString.substr(2, 2), 16);
   b = parseInt(hexString.substr(4, 2), 16);
   this.setRGB(r, g, b);
+  return this;
 };
 
 $rb.Color.prototype.getHRGB = function getHex(){
@@ -125,6 +128,7 @@ $rb.Color.prototype.rotateHueWeel = function rotateHueWeel(angle){
     hsv.h -= 1;
   }
   this.setHSV(hsv.h, hsv.s, hsv.v);
+  return this;
 };
 
 $rb.Harmony = function(type, mainColor){
