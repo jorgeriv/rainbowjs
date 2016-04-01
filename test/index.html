@@ -3,16 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>rainbow Test Suite</title>
-  <script src="../src/rainbow.js" charset="utf-8"></script>
-  <script type="text/javascript">
-    var mainColor, triad;
-    mainColor = new $rb.Color();
-    mainColor.setRGB(22, 180, 40);
-    triad = new $rb.Harmony('triad', mainColor);
-    console.log(triad.getColorScheme());
-  </script>
-</head>
-<body>
+  <style media="screen">
+  .scheme{
+    border: 2px dashed gray;
+  }
+  .main, .auxiliary{
+    display: inline-block;
+  }
+  .main{
+    width: 200px;
+    height: 200px;
+  }
 
+  .auxiliary{
+    width: 100px;
+    height: 200px;
+  }
+  </style>
+  <script src="../src/rainbow.js" charset="utf-8"></script>
+</head>
+<body onload="createSchemes()">
+  <script type="text/javascript">
+  ;(function(){'use strict';
+  var mainColor, triad, scheme;
+  mainColor = new $rb.Color();
+  mainColor.setRGB(20, 240, 140); //(2, 55, 240);
+  triad = new $rb.Harmony('triadic', mainColor);
+  scheme = triad.getColorScheme();
+
+  window.scheme = scheme;
+}());
+
+;(function(){'use strict';
+window.createSchemes = function createSchemes(){
+  var body, schemaDiv, mainColorDiv, auxColor = [];
+
+  body = document.body;
+  schemaDiv = document.createElement('div');
+  schemaDiv.className = 'shcema';
+  mainColorDiv = document.createElement('div');
+  mainColorDiv.className = 'main';
+  mainColorDiv.style = "background-color: #" + scheme.main.getHRGB();
+  scheme.auxiliary.forEach(function(color){
+    var auxColorDiv = document.createElement('div');
+    auxColorDiv.className = 'auxiliary';
+    auxColorDiv.style = "background-color: #" + color.getHRGB();
+    auxColor.push(auxColorDiv);
+  });
+  schemaDiv.appendChild(mainColorDiv);
+  auxColor.forEach(function(div){
+    schemaDiv.appendChild(div);
+  });
+  body.appendChild(schemaDiv);
+}
+}());
+
+</script>
 </body>
 </html>
