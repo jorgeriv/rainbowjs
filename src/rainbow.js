@@ -147,7 +147,7 @@ $rb.Harmony = function(type, mainColor){
     default:angles.push(0.5);
   }
 
-  angles.forEach(function(angle){
+  angles.forEach((angle)=>{
     var auxColor = new $rb.Color(this.mainColor.r, this.mainColor.g, this.mainColor.b);
     this.auxiliaryColors.push(auxColor.rotateHueWeel(angle));
   });
