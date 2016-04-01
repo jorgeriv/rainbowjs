@@ -63,7 +63,7 @@ function hsv2rgb(h, s, v){
       r = _1; g = v; b = _3;
     } else if( _i === 3 ){
       r = _1; g = _2; b = v;
-    } else if( var_i === 4 ){
+    } else if( _i === 4 ){
       r = _3; g = _1; b = v;
     } else{
       r = v; g = _1; b = _2;
