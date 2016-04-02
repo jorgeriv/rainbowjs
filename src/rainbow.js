@@ -121,7 +121,7 @@ $rb.Color.prototype.getHRGB = function getHex(){
   return hr + hg + hb;
 };
 
-$rb.Color.prototype.rotateHueWeel = function rotateHueWeel(angle){
+$rb.Color.prototype.setHue = function setHue(angle){
   var hsv = this.getHSV();
   hsv.h += angle;
   if(hsv.h > 1){
@@ -163,7 +163,7 @@ $rb.ColorScheme = function(type, mainColor){
 
   angles.forEach((angle)=>{
     var auxColor = new $rb.Color(this.mainColor.rgb.r, this.mainColor.rgb.g, this.mainColor.rgb.b);
-    this.auxiliaryColors.push(auxColor.rotateHueWeel(angle));
+    this.auxiliaryColors.push(auxColor.setHue(angle));
   });
 };
 
