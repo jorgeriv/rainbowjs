@@ -130,6 +130,15 @@ $rb.Color.prototype.rotateHueWeel = function rotateHueWeel(angle){
   this.setHSV(hsv.h, hsv.s, hsv.v);
   return this;
 };
+$rb.Color.prototype.setSaturation = function setSaturation(saturation){
+  var hsv = this.getHSV();
+  return this.setHSV(hsv.h, saturation, hsv.v);
+};
+
+$rb.Color.prototype.setValue = function setValue(value){
+  var hsv = this.getHSV();
+  return this.setHSV(hsv.h, hsv.s, value);
+};
 
 $rb.Harmony = function(type, mainColor){
   var angles = [];
