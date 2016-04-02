@@ -1,0 +1,106 @@
+defiine(['./rainbow'], function($rb){
+
+  $rb.Color = function(r, g, b){
+    this.rgb = {
+      r : r || 255,
+      g : g || 255,
+      b : b || 255
+    };
+    this.hsv = rgb2hsv(this.rgb.r, this.rgb.g, this.rgb.b);
+  };
+
+  $rb.Color.prototype.setHSV = function setHSV(h, s, v){
+    this.hsv = {h: h, s: s, v: v};
+    this.rgb = hsv2rgb(h, s, v);
+    return this;
+  };
+
+  $rb.Color.prototype.getHSV = function getHSV(){
+    return this.hsv;
+  };
+
+  $rb.Color.prototype.setRGB= function setRGB(r, g, b){
+    this.rgb = {r: r, g: g, b: b};
+    this.hsv = rgb2hsv(r, g, b);
+    return this;
+  };
+
+  $rb.Color.prototype.getRGB = function getRGB(){
+    return this.rgb;
+  };
+
+  $rb.Color.prototype.setHRGB = function setHex(hexString){
+    var r, g, b;
+    r = parseInt(hexString.substr(0, 2), 16);
+    g = parseInt(hexString.substr(2, 2), 16);
+    b = parseInt(hexString.substr(4, 2), 16);
+    this.setRGB(r, g, b);
+    return this;
+  };
+
+  $rb.Color.prototype.getHRGB = function getHex(){
+    var hr, hg, hb;
+    hr = this.rgb.r.toString(16);
+    hg = this.rgb.g.toString(16);
+    hb = this.rgb.b.toString(16);
+    return hr + hg + hb;
+  };
+
+  $rb.Color.prototype.setHue = function setHue(angle){
+    var hsv = this.getHSV();
+    hsv.h += angle;
+    if(hsv.h > 1){
+      hsv.h -= 1;
+    }
+    this.setHSV(hsv.h, hsv.s, hsv.v);
+    return this;
+  };
+
+  $rb.Color.prototype.setSaturation = function setSaturation(saturation){
+    var hsv = this.getHSV();
+    return this.setHSV(hsv.h, saturation, hsv.v);
+  };
+
+  $rb.Color.prototype.setValue = function setValue(value){
+    var hsv = this.getHSV();
+    return this.setHSV(hsv.h, hsv.s, value);
+  };
+  /*
+  $rb.Color.prototype.getShades = function getShades(num, method, options){
+      var points = [], shades = [];
+      method = method || 'equidistance';
+
+      if(typeof num === 'function'){
+        points = num();
+      } else if(typeof num === 'number'){
+        if(typeof method === 'string'){
+          method = generator(method);
+        }
+        points = method(num, options);
+      } else {
+        //error
+      }
+
+      points.forEach((point)=>{
+        var shade = this.clone();
+        return shades.push(shade.setValue(point));
+      });
+      //return new colors which are shades of original color
+      return shades;
+  };
+
+  $rb.Color.prototype.getTints = function getTints(){
+
+  };
+
+  <<<<<<< HEAD
+  $rb.Color.prototype.getTones = function getTones(){
+
+  };
+
+  $rb.Color.prototype.createScheme = function createScheme(){
+
+  };
+  */
+
+});
