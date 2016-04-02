@@ -25,9 +25,12 @@
 <body onload="createSchemes()">
   <script type="text/javascript">
   ;(function(){'use strict';
-  var mainColor, triad, scheme;
+  var mainColor, triad, scheme, hsv = {};
   mainColor = new $rb.Color();
-  mainColor.setRGB(20, 240, 140); //(2, 55, 240);
+  hsv.h = Math.random();
+  hsv.s = Math.random();
+  hsv.v = Math.random();
+  mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
   triad = new $rb.Harmony('triadic', mainColor);
   scheme = triad.getColorScheme();
 
