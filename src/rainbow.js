@@ -141,7 +141,7 @@ $rb.Color.prototype.setValue = function setValue(value){
   var hsv = this.getHSV();
   return this.setHSV(hsv.h, hsv.s, value);
 };
-
+/*
 $rb.Color.prototype.getShades = function getShades(num, method, options){
     var points = [], shades = [];
     method = method || 'equidistance';
@@ -176,7 +176,7 @@ $rb.Color.prototype.getTones = function getTones(){
 $rb.Color.prototype.createScheme = function createScheme(){
 
 };
-
+*/
 $rb.ColorScheme = function(type, mainColor){
   var angles = [];
   this.auxiliaryColors = [];
