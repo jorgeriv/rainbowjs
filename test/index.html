@@ -22,42 +22,54 @@
   </style>
   <script src="../src/rainbow.js" charset="utf-8"></script>
 </head>
-<body onload="createSchemes()">
+<body onload="main()">
   <script type="text/javascript">
   ;(function(){'use strict';
-  var mainColor, triad, scheme, hsv = {};
-  mainColor = new $rb.Color();
-  hsv.h = Math.random();
-  hsv.s = Math.random();
-  hsv.v = Math.random();
-  mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
-  triad = new $rb.Harmony('triadic', mainColor);
-  scheme = triad.getColorScheme();
+  window.main = main;
+  var schemeTypes = [
+    'complementary',
+    'analogous',
+    'triadic',
+    'split-complementary',
+    'rectangle',
+    'square',
+  ]
+  function main() {
+    var mainColor, hsv = {};
+    mainColor = new $rb.Color();
+    hsv.h = Math.random();
+    hsv.s = Math.random();
+    hsv.v = Math.random();
+    mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
+    schemeTypes.forEach(function(type){
+      return createSchemes(new $rb.Harmony(type, mainColor));
+    });
+  }
 
-  window.scheme = scheme;
-}());
+function createSchemes(scheme){
+  var body = document.body,
+      schemeDiv = document.createElement('div'),
+      mainColorDiv = document.createElement('div'),
+      schemeColors = scheme.getColorScheme(),
+      title = document.createElement('h1'),
+      auxColor = [];
 
-;(function(){'use strict';
-window.createSchemes = function createSchemes(){
-  var body, schemaDiv, mainColorDiv, auxColor = [];
-
-  body = document.body;
-  schemaDiv = document.createElement('div');
-  schemaDiv.className = 'shcema';
-  mainColorDiv = document.createElement('div');
+  schemeDiv.className = 'shcema';
+  title.textContent = scheme.type;
+  schemeDiv.appendChild(title);
   mainColorDiv.className = 'main';
-  mainColorDiv.style = "background-color: #" + scheme.main.getHRGB();
-  scheme.auxiliary.forEach(function(color){
+  mainColorDiv.style = "background-color: #" + schemeColors.main.getHRGB();
+  schemeColors.auxiliary.forEach(function(color){
     var auxColorDiv = document.createElement('div');
     auxColorDiv.className = 'auxiliary';
     auxColorDiv.style = "background-color: #" + color.getHRGB();
     auxColor.push(auxColorDiv);
   });
-  schemaDiv.appendChild(mainColorDiv);
+  schemeDiv.appendChild(mainColorDiv);
   auxColor.forEach(function(div){
-    schemaDiv.appendChild(div);
+    schemeDiv.appendChild(div);
   });
-  body.appendChild(schemaDiv);
+  body.appendChild(schemeDiv);
 }
 }());
 
