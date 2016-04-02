@@ -10,4 +10,4 @@ npm-debug.log
 
 /dist
 /node_modules
-/lib
+/vendor
