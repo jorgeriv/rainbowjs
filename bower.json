@@ -1,0 +1,32 @@
+{
+  "name": "rainbow",
+  "homepage": "https://github.com/jorgeriv/rainbow",
+  "authors": [
+    "Jorge Rivera <jorgeriv@gmail.com>"
+  ],
+  "description": "JavaScript color library to create color schemes based on color theory harmonies",
+  "main": "src/rainbow.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "color",
+    "palette",
+    "schema",
+    "theory",
+    "harmony",
+    "generator",
+    "library"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jasmine-core": "jasmine#^2.4.1"
+  }
+}
