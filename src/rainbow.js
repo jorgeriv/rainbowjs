@@ -1,10 +1,7 @@
-;(function(){'use strict';
-window.$rb = window.$rb || {};
-$rb = window.$rb;
-
-
-
-$rb.generate = function generate( ){
-
-};
-}());
+define([
+  '../src/core',
+  '../src/color',
+  '../src/schema'
+], function(rainbow){
+  return (window.rainbow = window.$rb = rainbow);
+});
