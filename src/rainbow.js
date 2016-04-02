@@ -169,6 +169,7 @@ $rb.Color.prototype.getTints = function getTints(){
 
 };
 
+<<<<<<< HEAD
 $rb.Color.prototype.getTones = function getTones(){
 
 };
@@ -177,6 +178,11 @@ $rb.Color.prototype.createScheme = function createScheme(){
 
 };
 */
+
+//TODO: Rename 'ColorScheme' to 'Scheme'  and update constructor to
+// accept an options object as a parameter and a toJSON() method so an Scheme could be
+// saver as JSON object and recreated from JSON
+
 $rb.ColorScheme = function(type, mainColor){
   var angles = [];
   this.auxiliaryColors = [];
