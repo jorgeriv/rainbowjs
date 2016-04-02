@@ -42,7 +42,7 @@
     hsv.v = Math.random();
     mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
     schemeTypes.forEach(function(type){
-      return createSchemes(new $rb.Harmony(type, mainColor));
+      return createSchemes(new $rb.ColorScheme(type, mainColor));
     });
   }
 
