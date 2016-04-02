@@ -75,6 +75,7 @@ function hsv2rgb(h, s, v){
   return {r: r, g: g, b: b};
 }
 
+
 $rb.Color = function(r, g, b){
   this.rgb = {
     r : r || 255,
@@ -121,7 +122,7 @@ $rb.Color.prototype.getHRGB = function getHex(){
   return hr + hg + hb;
 };
 
-$rb.Color.prototype.rotateHueWeel = function rotateHueWeel(angle){
+$rb.Color.prototype.setHue = function setHue(angle){
   var hsv = this.getHSV();
   hsv.h += angle;
   if(hsv.h > 1){
@@ -140,7 +141,42 @@ $rb.Color.prototype.setValue = function setValue(value){
   var hsv = this.getHSV();
   return this.setHSV(hsv.h, hsv.s, value);
 };
+/*
+$rb.Color.prototype.getShades = function getShades(num, method, options){
+    var points = [], shades = [];
+    method = method || 'equidistance';
 
+    if(typeof num === 'function'){
+      points = num();
+    } else if(typeof num === 'number'){
+      if(typeof method === 'string'){
+        method = generator(method);
+      }
+      points = method(num, options);
+    } else {
+      //error
+    }
+
+    points.forEach((point)=>{
+      var shade = this.clone();
+      return shades.push(shade.setValue(point));
+    });
+    //return new colors which are shades of original color
+    return shades;
+};
+
+$rb.Color.prototype.getTints = function getTints(){
+
+};
+
+$rb.Color.prototype.getTones = function getTones(){
+
+};
+
+$rb.Color.prototype.createScheme = function createScheme(){
+
+};
+*/
 $rb.ColorScheme = function(type, mainColor){
   var angles = [];
   this.auxiliaryColors = [];
@@ -163,7 +199,7 @@ $rb.ColorScheme = function(type, mainColor){
 
   angles.forEach((angle)=>{
     var auxColor = new $rb.Color(this.mainColor.rgb.r, this.mainColor.rgb.g, this.mainColor.rgb.b);
-    this.auxiliaryColors.push(auxColor.rotateHueWeel(angle));
+    this.auxiliaryColors.push(auxColor.setHue(angle));
   });
 };
 
