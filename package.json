@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/jorgeriv/rainbow/issues"
   },
-  "homepage": "https://github.com/jorgeriv/rainbow#readme"
+  "homepage": "https://github.com/jorgeriv/rainbow#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
