@@ -141,6 +141,9 @@ $rb.Color.prototype.setValue = function setValue(value){
   return this.setHSV(hsv.h, hsv.s, value);
 };
 
+//TODO: Rename 'ColorScheme' to 'Scheme'  and update constructor to
+// accept an options object as a parameter and a toJSON() method so an Scheme could be
+// saver as JSON object and recreated from JSON
 $rb.ColorScheme = function(type, mainColor){
   var angles = [];
   this.auxiliaryColors = [];
