@@ -14,10 +14,12 @@
   "quotmark": "single",
   "regexp": true,
   "undef": true,
-  "unused": false,
+  "unused": true,
   "trailing": true,
   "sub": true,
-  "maxlen": 80,
   "strict": true,
+  "esversion": 6,
+  "maxdepth": 10,
+  "maxcomplexity": 10,
   "globals": {}
 }
