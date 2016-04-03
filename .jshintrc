@@ -20,5 +20,8 @@
   "esversion": 6,
   "maxdepth": 10,
   "maxcomplexity": 10,
-  "globals": {}
+  "globals": {
+    "require": false,
+    "define": false
+  }
 }
