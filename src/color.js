@@ -75,8 +75,8 @@ define(['../src/core'], function($rb){
   $rb.Color = function(r, g, b){
     this.rgb = {
       r : r || 255,
-      g : g || 255,
-      b : b || 255
+      g : g || 0,
+      b : b || 0
     };
     this.hsv = rgb2hsv(this.rgb.r, this.rgb.g, this.rgb.b);
   };
