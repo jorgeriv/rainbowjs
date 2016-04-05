@@ -1,9 +1,9 @@
-define(['../src/core'], function($rb){
-  //TODO: Rename 'ColorScheme' to 'Scheme'  and update constructor to
-  // accept an options object as a parameter and a toJSON() method so an Scheme could be
-  // saver as JSON object and recreated from JSON
+define(['../src/core'], function($rb){ 'use strict';
+  //TODO: Update constructor to accept an options object as a parameter
+  // and a toJSON() method so an schema could be
+  // saved as JSON object and recreated from JSON
 
-  $rb.ColorScheme = function(type, mainColor){
+  $rb.Schema = function(type, mainColor){
     var angles = [];
     this.auxiliaryColors = [];
     this.mainColor = mainColor || new $rb.Color(255, 0, 0);
@@ -29,7 +29,7 @@ define(['../src/core'], function($rb){
     });
   };
 
-  $rb.ColorScheme.prototype.getColorScheme = function getColorScheme(){
+  $rb.Schema.prototype.getSchema = function getSchema(){
     return {
       'main': this.mainColor,
       'auxiliary': this.auxiliaryColors

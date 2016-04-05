@@ -23,8 +23,8 @@ Rainbow.js is a library to programatically generate a color palette to use in au
 * Add colors presets (css color names)
 
 ### Refactoring
-* Change 'scheme' to 'schema' in all code
-* Rename 'ColorScheme' constructor to 'Schema'
+* Change 'schema' to 'schema' in all code
+* Rename 'Schema' constructor to 'Schema'
 
 ### Other
 * Add unit tests

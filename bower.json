@@ -4,7 +4,7 @@
   "authors": [
     "Jorge Rivera <jorgeriv@gmail.com>"
   ],
-  "description": "JavaScript color library to create color schemes based on color theory harmonies",
+  "description": "JavaScript color library to create color schemas based on color theory harmonies",
   "main": "src/rainbow.js",
   "moduleType": [
     "globals"

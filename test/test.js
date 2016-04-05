@@ -1,5 +1,5 @@
 define(['../src/rainbow'], function(){'use strict';
-var schemeTypes = [
+var schemaTypes = [
   'complementary',
   'analogous',
   'triadic',
@@ -15,35 +15,35 @@ function main() {
   hsv.s = (Math.random()/2) + 0.5;
   hsv.v = (Math.random()/2) + 0.5;
   mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
-  schemeTypes.forEach(function(type){
-    return createSchemes(new $rb.ColorScheme(type, mainColor));
+  schemaTypes.forEach(function(type){
+    return createschemas(new $rb.Schema(type, mainColor));
   });
 }
 
-function createSchemes(scheme){
+function createschemas(schema){
   var body = document.body,
-  schemeDiv = document.createElement('div'),
+  schemaDiv = document.createElement('div'),
   mainColorDiv = document.createElement('div'),
-  schemeColors = scheme.getColorScheme(),
+  schemaColors = schema.getSchema(),
   title = document.createElement('h1'),
   auxColor = [];
 
-  schemeDiv.className = 'shcema';
-  title.textContent = scheme.type;
-  schemeDiv.appendChild(title);
+  schemaDiv.className = 'shcema';
+  title.textContent = schema.type;
+  schemaDiv.appendChild(title);
   mainColorDiv.className = 'main';
-  mainColorDiv.style = "background-color: #" + schemeColors.main.getHRGB();
-  schemeColors.auxiliary.forEach(function(color){
+  mainColorDiv.style = "background-color: #" + schemaColors.main.getHRGB();
+  schemaColors.auxiliary.forEach(function(color){
     var auxColorDiv = document.createElement('div');
     auxColorDiv.className = 'auxiliary';
     auxColorDiv.style = "background-color: #" + color.getHRGB();
     auxColor.push(auxColorDiv);
   });
-  schemeDiv.appendChild(mainColorDiv);
+  schemaDiv.appendChild(mainColorDiv);
   auxColor.forEach(function(div){
-    schemeDiv.appendChild(div);
+    schemaDiv.appendChild(div);
   });
-  body.appendChild(schemeDiv);
+  body.appendChild(schemaDiv);
 }
 
 main();

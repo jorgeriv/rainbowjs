@@ -170,7 +170,7 @@ define(['../src/core'], function($rb){
 
   };
 
-  $rb.Color.prototype.createScheme = function createScheme(){
+  $rb.Color.prototype.createschema = function createschema(){
 
   };
   */
