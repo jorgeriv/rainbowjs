@@ -12,8 +12,8 @@ function main() {
   var mainColor, hsv = {};
   mainColor = new $rb.Color();
   hsv.h = Math.random();
-  hsv.s = Math.random();
-  hsv.v = Math.random();
+  hsv.s = (Math.random()/2) + 0.5;
+  hsv.v = (Math.random()/2) + 0.5;
   mainColor.setHSV(hsv.h, hsv.s, hsv.v); //(2, 55, 240);
   schemeTypes.forEach(function(type){
     return createSchemes(new $rb.ColorScheme(type, mainColor));
