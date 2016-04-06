@@ -2,6 +2,6 @@ define([
   '../src/core',
   '../src/color',
   '../src/schema'
-], function(rainbow){
-  return (window.rainbow = window.$rb = rainbow);
+], function(rainbow){'use strict';
+  return  rainbow;
 });
