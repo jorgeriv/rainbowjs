@@ -5,14 +5,14 @@ return function(iterations, ratio, endValue){
   endValue = !!endValue;
 
   let sequence = [],
-      currBlock = 1;
+  currBlock = 1;
 
+  if(endValue){ // Return only the last value
+    return Math.pow(ratio, iterations -1);
+  }
   for(var ii = 0; ii < iterations; ii++){
     sequence.push(currBlock);
-      currBlock = currBlock * ratio;
-  }
-  if(endValue){ // Return only the last value
-    return sequence.pop();
+    currBlock = (currBlock * ratio);
   }
   return sequence;
 };
