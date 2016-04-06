@@ -9,5 +9,6 @@
 npm-debug.log
 
 /dist
+/build
 /node_modules
 /vendor
