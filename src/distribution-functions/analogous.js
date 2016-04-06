@@ -1,5 +1,7 @@
 define(['./geometric-progression'], function(geoetricProgression){'use strict';
-  return function(count = 1, options = {}){
+  return function(count, options){
+    count = count || 1;
+    options = options || {};
     let pivot = 0,
         distIncr = 0,
         currDist = 0,

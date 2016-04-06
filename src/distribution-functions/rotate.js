@@ -1,5 +1,7 @@
 define(function(){'use strict';
-return function rotate(count = 1, options = {}){
+return function rotate(count, options){
+  count = count || 1;
+  options  = options || {};
   const COMPANG = 0.5; // Complementary Angle
   let
   defaults = {

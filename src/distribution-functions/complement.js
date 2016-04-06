@@ -1,5 +1,7 @@
 define(['./analogous'], function(analogous){'use strict';
   return function(count = 1, options = {}){
+    count = count || 1;
+    options = options || {};
     let pivot = 0.5,
         absDistance = 0,
         distances = [],
