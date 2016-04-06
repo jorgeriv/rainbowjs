@@ -22,6 +22,9 @@
   "maxcomplexity": 10,
   "globals": {
     "require": false,
-    "define": false
+    "define": false,
+    "describe": false,
+    "it": false,
+    "expect": false
   }
 }
