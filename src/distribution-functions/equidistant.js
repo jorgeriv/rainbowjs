@@ -1,5 +1,6 @@
 define(function(){'use strict';
-return function(count = 1){
+return function(count){
+  count = count || 1;
   let distances = [],
       gap = 1 / count,
       currDist = 0;
