@@ -6,4 +6,8 @@ gulp.task('test', () => { 'use strict';
   .pipe(jasmine());
 });
 
+gulp.task('develop', ()=>{ 'use strict';
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test']);
+});
+
 gulp.task('default', ['test']);
