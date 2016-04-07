@@ -27,7 +27,7 @@ define(['./geometric-progression'], function(geoetricProgression){'use strict';
     if(options.invert){
       direction = !direction;
     }
-    for(var ii; ii < count; ii++){
+    for(let ii = 0; ii < count; ii++){
       distances.push(currDist);
       if(direction){
         currPosDist = pivot + currPosDist +distIncr;
