@@ -1,7 +1,9 @@
-define([
-  '../src/core',
-  '../src/color',
-  '../src/schema'
-], function(rainbow){'use strict';
-  return  rainbow;
-});
+'use strict';
+
+const Color = require('./color');
+const Schema = require('./schema');
+
+module.exposts = {
+  Color: Color,
+  Schema: Schema
+};

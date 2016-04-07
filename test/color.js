@@ -1,5 +1,4 @@
-const requirejs = require('./requirejs');
-const rainbow = requirejs('rainbow');
+const Color = require('../src/color');
 
 describe('Color', function() {'use strict';
   let color;
@@ -8,7 +7,7 @@ describe('Color', function() {'use strict';
 
   // Object creation
   it('create a new color', function() {
-    color = new rainbow.Color();
+    color = new Color();
     expect(color.rgb.r).toBe(255);
     expect(color.rgb.g).toBe(0);
     expect(color.rgb.b).toBe(0);

@@ -1,7 +1,7 @@
 
 'use strict';
 const rgb2hsv = require('./color-operations/rgb2hsv');
-const hsv2rgb = require('color-operations/hsv2rgb');
+const hsv2rgb = require('./color-operations/hsv2rgb');
 
   function Color(r, g, b){
     this.rgb = {

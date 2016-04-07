@@ -1,5 +1,4 @@
-define(function(){'use strict';
-return function(count){
+function equidistant(count){'use strict';
   count = count || 1;
   let distances = [],
       gap = 1 / count,
@@ -9,5 +8,6 @@ return function(count){
     currDist += gap;
   }
   return distances;
-};
-});
+}
+
+module.exports = equidistant;

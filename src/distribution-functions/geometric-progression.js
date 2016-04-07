@@ -1,5 +1,4 @@
-define(function(){'use strict';
-return function(iterations, ratio, endValue){
+function geometricProgression(iterations, ratio, endValue){'use strict';
   iterations = iterations || 1;
   ratio = ratio || 0.5;
   endValue = !!endValue;
@@ -15,5 +14,6 @@ return function(iterations, ratio, endValue){
     currBlock = (currBlock * ratio);
   }
   return sequence;
-};
-});
+}
+
+module.exports = geometricProgression;

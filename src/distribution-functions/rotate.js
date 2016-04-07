@@ -1,5 +1,4 @@
-define(function(){'use strict';
-return function rotate(count, options){
+function rotate(count, options){'use strict';
   count = count || 1;
   options  = options || {};
   const COMPANG = 0.5; // Complementary Angle
@@ -32,5 +31,6 @@ return function rotate(count, options){
   }
 
   return angles;
-};
-});
+}
+
+module.exports = rotate;

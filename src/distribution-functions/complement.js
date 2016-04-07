@@ -1,5 +1,6 @@
-define(['./analogous'], function(analogous){'use strict';
-  return function(count = 1, options = {}){
+const analogous = require('./analogous');
+
+function complement(count, options){'use strict';
     count = count || 1;
     options = options || {};
     let pivot = 0.5,
@@ -33,5 +34,6 @@ define(['./analogous'], function(analogous){'use strict';
           return newPointLocation;
         });
     return distances.push(0, complements);
-  };
-});
+  }
+
+  module.exports = complement;

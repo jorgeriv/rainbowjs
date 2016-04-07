@@ -1,5 +1,4 @@
-const requirejs = require('../requirejs');
-const analogous = requirejs('distribution-functions/analogous');
+const analogous = require('../../src/distribution-functions/analogous');
 
 describe('Analogous function', ()=>{'use strict';
 

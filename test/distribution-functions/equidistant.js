@@ -1,5 +1,4 @@
-const requirejs = require('../requirejs');
-const equidistant = requirejs('distribution-functions/equidistant');
+const equidistant = require('../../src/distribution-functions/equidistant');
 
 describe('Equidistant function', ()=>{'use strict';
 

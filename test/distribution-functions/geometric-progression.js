@@ -1,5 +1,4 @@
-const requirejs = require('../requirejs');
-const geometricProgression = requirejs('distribution-functions/geometric-progression');
+const geometricProgression = require('../../src/distribution-functions/geometric-progression');
 
 describe('Geometric progressions', ()=>{'use strict';
 

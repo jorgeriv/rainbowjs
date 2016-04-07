@@ -1,12 +1,14 @@
-define(['../src/core'], function($rb){ 'use strict';
+'use strict';
+
+const Color = require('./color');
   //TODO: Update constructor to accept an options object as a parameter
   // and a toJSON() method so an schema could be
   // saved as JSON object and recreated from JSON
 
-  $rb.Schema = function(type, mainColor){
+  function Schema(type, mainColor){
     var angles = [];
     this.auxiliaryColors = [];
-    this.mainColor = mainColor || new $rb.Color(255, 0, 0);
+    this.mainColor = mainColor || new Color(255, 0, 0);
     this.type = type || 'complementary';
     switch(this.type){
       // complementary is the default
@@ -24,17 +26,16 @@ define(['../src/core'], function($rb){ 'use strict';
     }
 
     angles.forEach((angle)=>{
-      var auxColor = new $rb.Color(this.mainColor.rgb.r, this.mainColor.rgb.g, this.mainColor.rgb.b);
+      var auxColor = new Color(this.mainColor.rgb.r, this.mainColor.rgb.g, this.mainColor.rgb.b);
       this.auxiliaryColors.push(auxColor.setHue(angle));
     });
-  };
+  }
 
-  $rb.Schema.prototype.getSchema = function getSchema(){
+  Schema.prototype.getSchema = function getSchema(){
     return {
       'main': this.mainColor,
       'auxiliary': this.auxiliaryColors
     };
   };
 
-  return $rb;
-});
+module.exports = Schema;
