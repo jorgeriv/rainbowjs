@@ -2,7 +2,7 @@
 Rainbow.js is a library to programatically generate a color palette to use in automated template generators and other applications.
 ## Known Bugs
 * Some times when a new schema is created, colors apart from main color don't get created.
-(Seems like this happens when primary colors of the main color are too small or to big ej. 0, 255);
+(Seems like this happens when primary colors of the main color are too small or too big ej. 0, 255);
 
 ## Road Map
 
