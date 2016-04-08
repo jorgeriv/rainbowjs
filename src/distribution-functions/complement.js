@@ -5,7 +5,7 @@ function complement(count, options){'use strict';
     options = options || {};
     let pivot = 0.5,
         absDistance = 0,
-        distances = [],
+        distances,
         complements = analogous(count, options),
         isPair = (count % 2) === 0;
 
@@ -25,7 +25,7 @@ function complement(count, options){'use strict';
         }
 
         // Rotate points 180 deg plus center;
-        complements.map(function(point){
+        complements = complements.map(function(point){
           let newPointLocation;
           newPointLocation = point + pivot;
           if(newPointLocation>1){
@@ -33,7 +33,9 @@ function complement(count, options){'use strict';
           }
           return newPointLocation;
         });
-    return distances.push(0, complements);
+
+        distances = [].concat(0, complements);
+    return distances;
   }
 
   module.exports = complement;
