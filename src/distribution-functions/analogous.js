@@ -25,7 +25,7 @@ if(typeof options.dist === 'number'){
 } else{
   distIncr = options.dist.fn.apply(this, options.dist.params);
 }
-console.log(distIncr);
+
 if(typeof distIncr === 'number'){
   if(distIncr > 1 || distIncr < 0){
     throw new Error('Distance increment must be a value between 0 and 1');
