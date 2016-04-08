@@ -13,7 +13,7 @@ direction = true, // trule for positive, false for negative
 defaults = {
   dist: {
     fn: geometricProgression,
-    params: [count, 0.3, true] // See geometric-progression.js
+    params: [count + 1, 0.3, true] // See geometric-progression.js
   },
   invert: false
 };
@@ -24,6 +24,12 @@ if(typeof options.dist === 'number'){
   distIncr = options.dist;
 } else{
   distIncr = options.dist.fn.apply(this, options.dist.params);
+}
+console.log(distIncr);
+if(typeof distIncr === 'number'){
+  if(distIncr > 1 || distIncr < 0){
+    throw new Error('Distance increment must be a value between 0 and 1');
+  }
 }
 if(options.invert){
   direction = !direction;
