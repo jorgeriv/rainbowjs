@@ -4,33 +4,33 @@ function rotate(count, options){'use strict';
   const COMPANG = 0.5; // Complementary Angle
   let
   defaults = {
-    angle: 0.1,
+    length: 0.1,
     invert: false,
   },
-  angles = [],
+  points = [],
   complementary = true,
   currAng = 0,
   nextAng;
 
   // Set default options if not defined;
-  options.angle = options.angle || defaults.angle;
+  options.length = options.length || defaults.length;
   options.invert = options.invert || defaults.invert;
 
   if(options.invert){
-    options.angle = -options.angle;
+    options.length = -options.length;
   }
 
   for(let ii = 0; ii < count; ii++){
-    nextAng = complementary ? COMPANG : options.angle;
+    points.push(currAng);
+    nextAng = complementary ? COMPANG : options.length;
     complementary = !complementary;
     currAng += nextAng;
     if(currAng > 1){
       currAng -= 1;
     }
-    angles.push(currAng);
   }
 
-  return angles;
+  return points;
 }
 
 module.exports = rotate;
