@@ -4,9 +4,9 @@ const equidistant = require('./distribution-functions/equidistant');
 const geometricProgression = require('./distribution-functions/geometric-progression');
 const rotate = require('./distribution-functions/rotate');
 
-function getDistFn(name){'use strict';
+function generateDistribution(count, type, options){'use strict';
   let fn;
-  switch(name){
+  switch(type){
     case 'analogous': fn = analogous;
     break;
     case 'complement': fn = complement;
@@ -19,7 +19,7 @@ function getDistFn(name){'use strict';
     break;
     default: fn = equidistant;
   }
-  return fn;
+  return fn(count, options);
 }
 
-module.exports = getDistFn;
+module.exports = generateDistribution;

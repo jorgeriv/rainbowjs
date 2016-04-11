@@ -1,7 +1,7 @@
 'use strict';
 
 require('./color');
-require('./distribution-functions');
+require('./distribution-generator');
 
 /* Distribution functions */
 require('./distribution-functions/geometric-progression');
