@@ -2,6 +2,7 @@
 'use strict';
 const rgb2hsv = require('./color-operations/rgb2hsv');
 const hsv2rgb = require('./color-operations/hsv2rgb');
+const distGenerator = require('./distribution-functions');
 
   function Color(r, g, b){
     this.rgb = {
@@ -68,26 +69,20 @@ const hsv2rgb = require('./color-operations/hsv2rgb');
     var hsv = this.getHSV();
     return this.setHSV(hsv.h, hsv.s, value);
   };
-  /*
-  Color.prototype.getShades = function getShades(num, method, options){
+
+  Color.prototype.getShades = function getShades(count, distFn, options){
       var points = [], shades = [];
-      method = method || 'equidistance';
+      distFn = distFn || 'equidistance';
 
-      if(typeof num === 'function'){
-        points = num();
-      } else if(typeof num === 'number'){
-        if(typeof method === 'string'){
-          method = generator(method);
-        }
-        points = method(num, options);
-      } else {
-        //error
+      if(typeof distFn === 'string'){
+        distFn = distGenerator(distFn);
       }
-
+      points = distFn(count, options);
       points.forEach((point)=>{
         var shade = this.clone();
         return shades.push(shade.setValue(point));
       });
+
       //return new colors which are shades of original color
       return shades;
   };
@@ -96,14 +91,29 @@ const hsv2rgb = require('./color-operations/hsv2rgb');
 
   };
 
-  <<<<<<< HEAD
   Color.prototype.getTones = function getTones(){
 
   };
 
-  Color.prototype.createschema = function createschema(){
+  Color.prototype.createSchema = function createSchema(){
 
   };
-  */
+
+  Color.prototype.setColorName = function setColorName(name){
+    this.name = name;
+    return this;
+  };
+
+  Color.prototype.getColorName = function getColorName(){
+    return this.name;
+  };
+
+  Color.prototype.setColorByName = function setColorByName(){
+
+  };
+
+  Color.prototype.clone = function clone(){
+    return new Color(this.rgb.r, this.rgb.g, this.rgb.b);
+  };
 
 module.exports = Color;
