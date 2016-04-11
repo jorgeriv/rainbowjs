@@ -2,7 +2,7 @@
 'use strict';
 const rgb2hsv = require('./color-operations/rgb2hsv');
 const hsv2rgb = require('./color-operations/hsv2rgb');
-const distGenerator = require('./distribution-functions');
+const distGenerator = require('./distribution-generator');
 
   function Color(r, g, b){
     this.rgb = {
@@ -70,29 +70,48 @@ const distGenerator = require('./distribution-functions');
     return this.setHSV(hsv.h, hsv.s, value);
   };
 
-  Color.prototype.getShades = function getShades(count, distFn, options){
-      var points = [], shades = [];
-      distFn = distFn || 'equidistance';
+  Color.prototype.getShades = function getShades(count, distType, options){
+      count = count || 2;
+      let shades = [];
 
-      if(typeof distFn === 'string'){
-        distFn = distGenerator(distFn);
-      }
-      points = distFn(count, options);
-      points.forEach((point)=>{
-        var shade = this.clone();
-        return shades.push(shade.setValue(point));
-      });
+      distGenerator(count, distType, options)
+        .forEach((point)=>{
+          var shade = this.clone();
+          return shades.push(shade.setValue(point));
+        });
 
       //return new colors which are shades of original color
       return shades;
   };
 
-  Color.prototype.getTints = function getTints(){
+  Color.prototype.getTints = function getTints(count, distType, options){
+    count = count || 2;
+    let tints = [];
 
+    distGenerator(count, distType, options)
+      .forEach((point)=>{
+        var tint = this.clone();
+        return tints.push(tint.setSaturation(point));
+      });
+
+    //return new colors which are tints of original color
+    return tints;
   };
 
-  Color.prototype.getTones = function getTones(){
+  Color.prototype.getTones = function getTones(count, distType, options){
+    count = count || 2;
+    let tones = [];
 
+    distGenerator(count, distType, options)
+      .forEach((point)=>{
+        var tone = this.clone();
+        tone.setSaturation(point);
+        tone.setValue(point);
+        return tones.push(tone);
+      });
+
+    //return new colors which are tones of original color
+    return tones;
   };
 
   Color.prototype.createSchema = function createSchema(){
