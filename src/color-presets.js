@@ -1,6 +1,6 @@
 // Use double quotmark to make it easy to change file to JSON format
 /* jshint quotmark: double */
-
+"use strict";
 let colorPresets = {
   "black":	"000000",
   "silver": "c0c0c0",
