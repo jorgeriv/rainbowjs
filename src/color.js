@@ -5,70 +5,91 @@ const hsv2rgb = require('./color-operations/hsv2rgb');
 const distGenerator = require('./distribution-generator');
 const colorPresets = require('./color-presets');
 
-  function Color(r, g, b){
-    this.rgb = {
-      r : r || 255,
-      g : g || 0,
-      b : b || 0
+  function Color(obj){
+    let defaults = {
+      r : 255,
+      g : 0,
+      b : 0
     };
-    this.hsv = rgb2hsv(this.rgb.r, this.rgb.g, this.rgb.b);
+    obj = obj || {};
+
+    this.name = obj.name;
+    this.r = obj.r || defaults.r;
+    this.g = obj.g || defaults.g;
+    this.b = obj.b || defaults.b;
   }
 
   Color.prototype.setHSV = function setHSV(h, s, v){
-    this.hsv = {h: h, s: s, v: v};
-    this.rgb = hsv2rgb(h, s, v);
+    let hsv = rgb2hsv(this.r, this.g, this.b),
+        rgb;
+
+    h = h || hsv.h;
+    s = s || hsv.s;
+    v = v || hsv.v;
+    rgb = hsv2rgb(h, s, v);
+    this.r = rgb.r;
+    this.g = rgb.g;
+    this.b = rgb.b;
+
     return this;
   };
 
   Color.prototype.getHSV = function getHSV(){
-    return this.hsv;
+    return rgb2hsv(this.r, this.g, this.b);
   };
 
   Color.prototype.setRGB= function setRGB(r, g, b){
-    this.rgb = {r: r, g: g, b: b};
-    this.hsv = rgb2hsv(r, g, b);
+    r = r || this.r;
+    g = g || this.g;
+    b = b || this.b;
+    this.r = r;
+    this.g = g;
+    this.b = b;
     return this;
   };
 
   Color.prototype.getRGB = function getRGB(){
-    return this.rgb;
+    return {r: this.r, g: this.g, b: this.b};
   };
 
-  Color.prototype.setHRGB = function setHex(hexString){
-    var r, g, b;
-    r = parseInt(hexString.substr(0, 2), 16);
-    g = parseInt(hexString.substr(2, 2), 16);
-    b = parseInt(hexString.substr(4, 2), 16);
+  Color.prototype.setHRGB = function setHRGB(hexString){
+    let r = parseInt(hexString.substr(0, 2), 16),
+        g = parseInt(hexString.substr(2, 2), 16),
+        b = parseInt(hexString.substr(4, 2), 16);
+
     this.setRGB(r, g, b);
     return this;
   };
 
-  Color.prototype.getHRGB = function getHex(){
-    var hr, hg, hb;
-    hr = this.rgb.r.toString(16);
-    hg = this.rgb.g.toString(16);
-    hb = this.rgb.b.toString(16);
+  Color.prototype.getHRGB = function getHRGB(){
+    let hr = this.r.toString(16),
+        hg = this.g.toString(16),
+        hb = this.b.toString(16);
+
     return hr + hg + hb;
   };
 
-  Color.prototype.setHue = function setHue(angle){
+  Color.prototype.rotateHueWheel = function rotateHueWheel(angle){
     var hsv = this.getHSV();
     hsv.h += angle;
     if(hsv.h > 1){
       hsv.h -= 1;
     }
-    this.setHSV(hsv.h, hsv.s, hsv.v);
+    this.setHSV(hsv.h);
+    return this;
+  };
+
+  Color.prototype.setHue = function setHue(hue){
+    this.setHSV(hue);
     return this;
   };
 
   Color.prototype.setSaturation = function setSaturation(saturation){
-    var hsv = this.getHSV();
-    return this.setHSV(hsv.h, saturation, hsv.v);
+    return this.setHSV(null,saturation);
   };
 
   Color.prototype.setValue = function setValue(value){
-    var hsv = this.getHSV();
-    return this.setHSV(hsv.h, hsv.s, value);
+    return this.setHSV(null, null, value);
   };
 
   Color.prototype.getShades = function getShades(count, distType, options){
@@ -119,18 +140,19 @@ const colorPresets = require('./color-presets');
 
   };
 
-  Color.prototype.setColorName = function setColorName(name){
+  Color.prototype.setName = function setName(name){
     this.name = name;
     return this;
   };
 
-  Color.prototype.getColorName = function getColorName(){
+  Color.prototype.getName = function getName(){
     return this.name;
   };
 
   Color.prototype.setColorByName = function setColorByName(name){
     let hexString = colorPresets[name];
     if(typeof hexString === 'string'){
+      this.name = name;
       this.setHRGB(hexString);
     } else{
       throw new Error(`color ${name} is not defined`);
@@ -139,7 +161,22 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.clone = function clone(){
-    return new Color(this.rgb.r, this.rgb.g, this.rgb.b);
+    let obj = {
+      name: this.name,
+      r: this.r,
+      g: this.g,
+      b: this.b
+    };
+    return new Color(obj);
+  };
+
+  Color.prototype.toJSON = function toJSON(){
+    return JSON.stringify({
+      name: this.name,
+      r: this.r,
+      g: this.g,
+      b: this.b
+    });
   };
 
 module.exports = Color;

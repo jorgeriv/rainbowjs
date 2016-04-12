@@ -8,17 +8,17 @@ let color;
 // Object creation
 it('should create a new color', ()=> {
   color = new Color();
-  expect(color.rgb.r).toBe(255);
-  expect(color.rgb.g).toBe(0);
-  expect(color.rgb.b).toBe(0);
+  expect(color.r).toBe(255);
+  expect(color.g).toBe(0);
+  expect(color.b).toBe(0);
 });
 
 // Change color's RGB values
 it('should update set rgb', ()=>{
   color.setRGB(20, 20, 255);
-  expect(color.rgb.r).toBe(20);
-  expect(color.rgb.g).toBe(20);
-  expect(color.rgb.b).toBe(255);
+  expect(color.r).toBe(20);
+  expect(color.g).toBe(20);
+  expect(color.b).toBe(255);
 });
 
 // Change color's RGB values
@@ -28,6 +28,42 @@ it('should get hsv', ()=>{
   expect(hsv.h).toBe(0.6666666666666666);
   expect(hsv.s).toBe(0.9215686274509803);
   expect(hsv.v).toBe(1);
+});
+
+// Set color's Hex RGB values
+it('should set hex RGB', ()=>{
+  let hrgb = color.setHRGB('ffffff');
+
+  expect(hrgb.r).toBe(255);
+  expect(hrgb.g).toBe(255);
+  expect(hrgb.b).toBe(255);
+});
+
+// Get color's Hex RGB values
+it('should set hex RGB', ()=>{
+  let hrgb = color.getHRGB();
+  expect(hrgb).toBe('ffffff');
+});
+
+// Set color's hue
+it('should set hue value', ()=>{
+  let hue = 0.5;
+  color.setHSV(hue);
+  expect(color.getHSV().h).toBeCloseTo(hue, 3);
+});
+
+// Set color's saturation
+it('should set saturation value', ()=>{
+  let saturation = 0.5;
+  color.setHSV(null, saturation);
+  expect(color.getHSV().s).toBeCloseTo(saturation, 3);
+});
+
+// Set color's value
+it('should set value value', ()=>{
+  let value = 0.5;
+  color.setHSV(null, null, value);
+  expect(color.getHSV().v).toBeCloseTo(value, 2);
 });
 
 it('should generate generate an array of shades', ()=>{
@@ -58,6 +94,11 @@ it('should throw when setting an undefined name', ()=>{
   expect(()=>{
     color.setColorByName('badname');
   }).toThrowError('color badname is not defined');
+});
+
+it('should convert object to JSON string', ()=>{
+  expect(color.toJSON())
+    .toBe('{"r":102,"g":51,"b":153}');
 });
 
 });
