@@ -3,6 +3,7 @@
 const rgb2hsv = require('./color-operations/rgb2hsv');
 const hsv2rgb = require('./color-operations/hsv2rgb');
 const distGenerator = require('./distribution-generator');
+const colorPresets = require('./color-presets');
 
   function Color(r, g, b){
     this.rgb = {
@@ -127,8 +128,14 @@ const distGenerator = require('./distribution-generator');
     return this.name;
   };
 
-  Color.prototype.setColorByName = function setColorByName(){
-
+  Color.prototype.setColorByName = function setColorByName(name){
+    let hexString = colorPresets[name];
+    if(typeof hexString === 'string'){
+      this.setHRGB(hexString);
+    } else{
+      throw new Error(`color ${name} is not defined`);
+    }
+    return this;
   };
 
   Color.prototype.clone = function clone(){

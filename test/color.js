@@ -47,4 +47,17 @@ it('should generate generate an array of tints', ()=>{
   expect(thints instanceof Array).toBe(true);
   expect(thints.length).toBe(5);
 });
+
+it('should set the color by CSS name', ()=>{
+  let rebeccapurple = color.setColorByName('rebeccapurple');
+  expect(rebeccapurple instanceof Object).toBe(true);
+  expect(rebeccapurple.getHRGB()).toBe('663399');
+});
+
+it('should throw when setting an undefined name', ()=>{
+  expect(()=>{
+    color.setColorByName('badname');
+  }).toThrowError('color badname is not defined');
+});
+
 });
