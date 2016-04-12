@@ -2,10 +2,10 @@
 
 const Color = require('./color');
   //TODO: Update constructor to accept an options object as a parameter
-  // and a toJSON() method so an schema could be
+  // and a toJSON() method so an scheme could be
   // saved as JSON object and recreated from JSON
 
-  function Schema(type, mainColor){
+  function Scheme(type, mainColor){
     var angles = [];
     this.auxiliaryColors = [];
     this.mainColor = mainColor || new Color(255, 0, 0);
@@ -31,11 +31,11 @@ const Color = require('./color');
     });
   }
 
-  Schema.prototype.getSchema = function getSchema(){
+  Scheme.prototype.getscheme = function getscheme(){
     return {
       'main': this.mainColor,
       'auxiliary': this.auxiliaryColors
     };
   };
 
-module.exports = Schema;
+module.exports = Scheme;

@@ -136,8 +136,7 @@ const colorPresets = require('./color-presets');
     return tones;
   };
 
-  Color.prototype.createSchema = function createSchema(){
-
+  Color.prototype.createScheme = function createscheme(){
   };
 
   Color.prototype.setName = function setName(name){
