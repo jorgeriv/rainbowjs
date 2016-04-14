@@ -5,7 +5,15 @@ const geometricProgression = require('./distribution-functions/geometric-progres
 const rotate = require('./distribution-functions/rotate');
 
 function generateDistribution(config){'use strict';
-  let fn;
+  let fn,
+      defaults = {
+        type: 'rotate',
+        count: 1,
+        options: {}
+      };
+      
+  config = config || {};
+  config = Object.assign(defaults, config);
   switch(config.type){
     case 'analogous': fn = analogous;
     break;
