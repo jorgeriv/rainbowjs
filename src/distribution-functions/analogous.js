@@ -18,7 +18,7 @@ defaults = {
   invert: false
 };
 
-Object.assign(defaults, options);
+options = Object.assign(defaults, options);
 
 if(typeof options.dist === 'number'){
   distIncr = options.dist;
