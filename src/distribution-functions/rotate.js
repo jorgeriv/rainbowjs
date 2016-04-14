@@ -4,7 +4,7 @@ function rotate(count, options){'use strict';
   const COMPANG = 0.5; // Complementary Angle
   let
   defaults = {
-    length: 0.1,
+    length: 0.15,
     invert: false,
   },
   points = [],
