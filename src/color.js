@@ -93,10 +93,14 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.getShades = function getShades(count, distType, options){
-      count = count || 2;
-      let shades = [];
+      let shades = [],
+          config = {};
 
-      distGenerator(count, distType, options)
+      config.count = count || 2;
+      config.type = distType || 'equidistant';
+      config.options = options || {};
+
+      distGenerator(config)
         .forEach((point)=>{
           var shade = this.clone();
           return shades.push(shade.setValue(point));
@@ -107,10 +111,14 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.getTints = function getTints(count, distType, options){
-    count = count || 2;
-    let tints = [];
+    let tints = [],
+        config = {};
 
-    distGenerator(count, distType, options)
+    config.count = count || 2;
+    config.type = distType || 'equidistant';
+    config.options = options || {};
+
+    distGenerator(config)
       .forEach((point)=>{
         var tint = this.clone();
         return tints.push(tint.setSaturation(point));
@@ -121,10 +129,14 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.getTones = function getTones(count, distType, options){
-    count = count || 2;
-    let tones = [];
+    let tones = [],
+        config = {};
 
-    distGenerator(count, distType, options)
+    config.count = count || 2;
+    config.type = distType || 'equidistant';
+    config.options = options || {};
+
+    distGenerator(config)
       .forEach((point)=>{
         var tone = this.clone();
         tone.setSaturation(point);
