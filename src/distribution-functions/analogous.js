@@ -18,8 +18,8 @@ defaults = {
   invert: false
 };
 
-options.dist = options.dist || defaults.dist;
-options.invert = options.invert || defaults.invert;
+Object.assign(defaults, options);
+
 if(typeof options.dist === 'number'){
   distIncr = options.dist;
 } else{
