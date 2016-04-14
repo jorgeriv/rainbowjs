@@ -3,44 +3,35 @@ let schemePresets = {
   analogous: {
     count: 3,
     fn: 'analogous',
-    options: {
-
-    }
+    options: {}
   },
+
   complementary: {
-    count: 1,
+    count: 2,
     fn: 'complement',
-    options: {
-
-    }
+    options: {}
   },
+
   splitComplementary: {
     count: 3,
     fn: 'complement',
-    options: {
-
-    }
+    options: {}
   },
+
   triadic: {
     count: 3,
-    fn: 'equidistant',
-    options: {
-
-    }
+    fn: 'equidistant'
   },
+
   squere: {
     count: 4,
-    fn: 'equidistant',
-    options: {
-
-    }
+    fn: 'equidistant'
   },
+
   rectangle: {
     count: 4,
     fn: 'rotate',
-    options: {
-
-    }
+    options: {}
   },
 };
 
