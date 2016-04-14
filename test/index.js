@@ -1,6 +1,7 @@
 'use strict';
 
 require('./color');
+require('./scheme');
 require('./distribution-generator');
 
 /* Distribution functions */
