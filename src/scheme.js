@@ -5,6 +5,7 @@ const distributionGenerator = require('./distribution-generator');
 const schemeDefinitions = require('./scheme-definitions');
 
 function Scheme(options){
+  options = options || {};
   this.name = options.name || '';
   this.colors = options.colors || [{base: new Color()}];
 }
@@ -98,4 +99,5 @@ Scheme.prototype.traverse = function traverse(fn){
     colorSet.tones.forEach(fn);
   });
 };
+
 module.exports = Scheme;
