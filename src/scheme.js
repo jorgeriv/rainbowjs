@@ -6,7 +6,7 @@ const schemeDefinitions = require('./scheme-definitions');
 
 function Scheme(options){
   options = options || {};
-  this.name = options.name || '';
+  this.name = options.name || undefined;
   this.colors = options.colors || [{base: new Color()}];
 }
 
@@ -55,7 +55,7 @@ Scheme.prototype.flatten = function flatten(value){
 
 
 Scheme.prototype.reset = function reset(){
-  this.name = '';
+  this.name = undefined;
   this.colors = [{base: new Color()}];
   return this;
 };
@@ -84,10 +84,13 @@ Scheme.prototype.generate = function generate(){
   let angles;
 
   angles = distributionGenerator(this.config);
-  angles.forEach((angle)=>{
+  angles.forEach((angle, index)=>{
+    if(index === 0){ // first iteration is the main color which is already in the array
+      return;
+    }
     // Fist color in the array is the main color to calculate other scheme colors
     var auxColor = this.colors[0].base.clone();
-    this.colors({base: auxColor.rotateHueWheel(angle)});
+    this.colors.push({base: auxColor.rotateHueWheel(angle)});
   });
 };
 
