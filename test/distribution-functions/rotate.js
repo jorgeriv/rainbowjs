@@ -14,8 +14,8 @@ describe('Rotate function', ()=>{'use strict';
     expect(result.length).toBe(count);
     expect(result[0]).toBe(0);
     expect(result[1]).toBe(0.5);
-    expect(result[2]).toBe(0.6);
-    expect(result[3]).toBe(0.10000000000000009); // This should be 0.1 but this error comes from EcmaScript itself
+    expect(result[2]).toBe(0.65);
+    expect(result[3]).toBe(0.1499999999999999); // This should be 0.15 but this error comes from EcmaScript itself
   });
 
   it('should accept a configuration object', ()=>{
