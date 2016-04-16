@@ -13,7 +13,7 @@ function rotate(count, options){'use strict';
   nextAng;
 
   // Set default options if not defined;
-  Object.assign(defaults, options);
+  options = Object.assign(defaults, options);
 
   if(options.invert){
     options.length = -options.length;
