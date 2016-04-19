@@ -1,4 +1,4 @@
-# Contributing to Rainvow
+# Contributing to Rainbow
 
 ## Getting Involved
 
@@ -7,7 +7,7 @@
 
 ## How to Report Bugs
 
-### Make sure it is a Ranbow bug
+### Make sure it is a Rainbow bug
 
 ### Disable browser extensions
 
