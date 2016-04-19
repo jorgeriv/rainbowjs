@@ -97,9 +97,17 @@ Scheme.prototype.generate = function generate(){
 Scheme.prototype.traverse = function traverse(fn){
   this.colors.forEach(function(colorSet){
     fn(colorSet.base);
-    colorSet.shades.forEach(fn);
-    colorSet.tints.forEach(fn);
-    colorSet.tones.forEach(fn);
+    if(colorSet.shades && colorSet.shades.length > 0){
+      colorSet.shades.forEach(fn);
+    }
+
+    if(colorSet.tints && colorSet.tints.length > 0){
+      colorSet.tints.forEach(fn);
+    }
+
+    if(colorSet.tones && colorSet.tones.length > 0){
+      colorSet.tones.forEach(fn);
+    }
   });
 };
 

@@ -32,7 +32,8 @@ it('should generate secundary colors given a harmony function', ()=>{
 });
 
 it('should rotate hue wheel of all colors', ()=>{
-
+  let angle = 0.5;
+  scheme.rotate(angle);
 });
 
 });
