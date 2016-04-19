@@ -1,7 +1,7 @@
 {
   "name": "rainbow",
   "version": "0.1.0",
-  "description": "JavaScript color library to create color schemas based on color theory harmonies",
+  "description": "JavaScript color library to create color schemes based on color theory harmonies",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -16,7 +16,7 @@
   "keywords": [
     "color",
     "palette",
-    "schema",
+    "scheme",
     "theory",
     "harmony",
     "generator",

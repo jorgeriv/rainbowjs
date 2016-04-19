@@ -1,9 +1,9 @@
 'use strict';
 
 const Color = require('./color');
-const Schema = require('./schema');
+const Scheme = require('./scheme');
 
 module.exposts = {
   Color: Color,
-  Schema: Schema
+  Scheme: Scheme
 };

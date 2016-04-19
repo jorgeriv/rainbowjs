@@ -4,9 +4,17 @@ const equidistant = require('./distribution-functions/equidistant');
 const geometricProgression = require('./distribution-functions/geometric-progression');
 const rotate = require('./distribution-functions/rotate');
 
-function generateDistribution(count, type, options){'use strict';
-  let fn;
-  switch(type){
+function generateDistribution(config){'use strict';
+  let fn,
+      defaults = {
+        type: 'rotate',
+        count: 1,
+        options: {}
+      };
+      
+  config = config || {};
+  config = Object.assign(defaults, config);
+  switch(config.type){
     case 'analogous': fn = analogous;
     break;
     case 'complement': fn = complement;
@@ -19,7 +27,7 @@ function generateDistribution(count, type, options){'use strict';
     break;
     default: fn = equidistant;
   }
-  return fn(count, options);
+  return fn(config.count, config.options);
 }
 
 module.exports = generateDistribution;

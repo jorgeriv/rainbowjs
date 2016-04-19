@@ -98,7 +98,7 @@ it('should throw when setting an undefined name', ()=>{
 
 it('should convert object to JSON string', ()=>{
   expect(color.toJSON())
-    .toBe('{"r":102,"g":51,"b":153}');
+    .toBe('{"name":"rebeccapurple","r":102,"g":51,"b":153}');
 });
 
 });
