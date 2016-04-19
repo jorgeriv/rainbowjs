@@ -1,17 +1,18 @@
+'use strict';
 const analogous = require('./distribution-functions/analogous');
 const complement = require('./distribution-functions/complement');
 const equidistant = require('./distribution-functions/equidistant');
 const geometricProgression = require('./distribution-functions/geometric-progression');
 const rotate = require('./distribution-functions/rotate');
 
-function generateDistribution(config){'use strict';
+function generateDistribution(config){
   let fn,
       defaults = {
         type: 'rotate',
         count: 1,
         options: {}
       };
-      
+
   config = config || {};
   config = Object.assign(defaults, config);
   switch(config.type){

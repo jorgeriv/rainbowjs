@@ -1,6 +1,7 @@
+'use strict';
 const geometricProgression = require('./geometric-progression');
 
-function analogous(count, options){'use strict';
+function analogous(count, options){
 count = count || 1;
 options = options || {};
 let pivot = 0,

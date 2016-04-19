@@ -1,6 +1,7 @@
+'use strict';
 const analogous = require('./analogous');
 
-function complement(count, options){'use strict';
+function complement(count, options){
     count = count || 1;
     options = options || {};
     let pivot = 0.5,

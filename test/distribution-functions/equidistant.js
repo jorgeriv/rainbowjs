@@ -1,6 +1,7 @@
+'use strict';
 const equidistant = require('../../src/distribution-functions/equidistant');
 
-describe('Equidistant function', ()=>{'use strict';
+describe('Equidistant function', ()=>{
 
   it('should create an array with one value', ()=>{
     let result = equidistant();

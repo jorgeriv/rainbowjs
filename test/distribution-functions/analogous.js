@@ -1,6 +1,7 @@
+'use strict';
 const analogous = require('../../src/distribution-functions/analogous');
 
-describe('Analogous function', ()=>{'use strict';
+describe('Analogous function', ()=>{
 
 it('should create an array with 1 element if no arguments are passed', ()=>{
   let result = analogous();

@@ -1,4 +1,6 @@
-function rotate(count, options){'use strict';
+'use strict';
+
+function rotate(count, options){
   count = count || 1;
   options  = options || {};
   const COMPANG = 0.5; // Complementary Angle

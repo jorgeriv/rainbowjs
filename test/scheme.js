@@ -1,7 +1,8 @@
+'use strict';
 const Color = require('../src/color');
 const Scheme = require('../src/scheme');
 
-describe('Scheme', ()=>{'use strict';
+describe('Scheme', ()=>{
 let scheme;
 
 it('should create an empty scheme', ()=>{
