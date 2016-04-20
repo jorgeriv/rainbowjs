@@ -1,6 +1,7 @@
+'use strict';
 const Color = require('../src/color');
 
-describe('Color', ()=>{'use strict';
+describe('Color', ()=>{
 let color;
 
 //Specs

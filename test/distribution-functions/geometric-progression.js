@@ -1,6 +1,7 @@
+'use strict';
 const geometricProgression = require('../../src/distribution-functions/geometric-progression');
 
-describe('Geometric progressions', ()=>{'use strict';
+describe('Geometric progressions', ()=>{
 
 it('should generate an array of one value by default', ()=>{
   let result = geometricProgression();

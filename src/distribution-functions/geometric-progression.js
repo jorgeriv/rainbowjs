@@ -1,4 +1,5 @@
-function geometricProgression(iterations, ratio, endValue){'use strict';
+'use strict';
+function geometricProgression(iterations, ratio, endValue){
   iterations = iterations || 1;
   ratio = ratio || 0.5;
   endValue = !!endValue;

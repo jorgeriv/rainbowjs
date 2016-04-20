@@ -1,6 +1,7 @@
+'use strict';
 const rotate = require('../../src/distribution-functions/rotate');
 
-describe('Rotate function', ()=>{'use strict';
+describe('Rotate function', ()=>{
 
   it('should create an array with one value', ()=>{
     let result = rotate();

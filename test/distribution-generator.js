@@ -1,6 +1,7 @@
+'use strict';
 const distGen= require('../src/distribution-generator');
 
-describe('Distribution functions', ()=>{'use strict';
+describe('Distribution functions', ()=>{
 
 it('should return the rotate function by default', ()=>{
   let points = distGen();
