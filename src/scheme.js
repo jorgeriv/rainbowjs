@@ -11,10 +11,11 @@ function Scheme(options){
 }
 
 Scheme.prototype.toJSON = function toJSON(){
-  return JSON.stringify({
+
+  return {
     name: this.name,
     colors: this.colors
-  });
+  };
 };
 
 Scheme.prototype.setName = function setName(name){
@@ -160,7 +161,10 @@ Scheme.prototype.traverse = function traverse(fn){
 };
 
 Scheme.prototype.clone = function clone(){
-  return new Scheme(this.toJSON());
+  return new Scheme({
+    name: this.name,
+    colors: this.colors
+  });
 };
 
 module.exports = Scheme;

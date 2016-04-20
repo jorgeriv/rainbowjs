@@ -182,12 +182,12 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.toJSON = function toJSON(){
-    return JSON.stringify({
+    return {
       name: this.name,
       r: this.r,
       g: this.g,
       b: this.b
-    });
+    };
   };
 
 module.exports = Color;

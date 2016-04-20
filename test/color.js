@@ -48,23 +48,26 @@ it('should set hex RGB', ()=>{
 
 // Set color's hue
 it('should set hue value', ()=>{
-  let hue = 0.5;
+  let color = new Color(),
+      hue = 0.5;
   color.setHSV(hue);
-  expect(color.getHSV().h).toBeCloseTo(hue, 3);
+  expect(color.getHSV().h).toBeCloseTo(hue, 1);
 });
 
 // Set color's saturation
 it('should set saturation value', ()=>{
-  let saturation = 0.5;
+  let color = new Color(),
+      saturation = 0.5;
   color.setHSV(null, saturation);
-  expect(color.getHSV().s).toBeCloseTo(saturation, 3);
+  expect(color.getHSV().s).toBeCloseTo(saturation, 1);
 });
 
 // Set color's value
 it('should set value value', ()=>{
-  let value = 0.5;
+  let color = new Color(),
+      value = 0.5;
   color.setHSV(null, null, value);
-  expect(color.getHSV().v).toBeCloseTo(value, 2);
+  expect(color.getHSV().v).toBeCloseTo(value, 1);
 });
 
 it('should generate generate an array of shades', ()=>{
@@ -97,9 +100,22 @@ it('should throw when setting an undefined name', ()=>{
   }).toThrowError('color badname is not defined');
 });
 
-it('should convert object to JSON string', ()=>{
+it('should convert object to an object to be stringifyied on JSON.stringify()', ()=>{
   expect(color.toJSON())
-    .toBe('{"name":"rebeccapurple","r":102,"g":51,"b":153}');
+    .toEqual({name:'rebeccapurple',r:102,g:51,b:153});
 });
+
+// it('should clone the color', ()=>{
+//   let clone = color.clone();
+//   expect(clone).toEqual(color);
+// });
+
+// it('should rotate hue wheel', ()=>{
+//   let color = new Color(),
+//       originalHue = color.getHSV().h;
+//       color.rotateHueWheel(0.1);
+//   expect(originalHue)
+//     .toBeLessThan(color.getHSV().h);
+// });
 
 });

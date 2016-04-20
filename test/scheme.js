@@ -61,12 +61,28 @@ it('should generate 3 tones for each color in the scheme', ()=>{
 
 it('should clone the scheme',()=>{
   clone = scheme.clone();
-  expect(clone).toEqual(scheme);
+  expect(clone.name).toBe(scheme.name);
+  expect(clone.colors.length).toEqual(scheme.colors.length);
+  expect(clone.colors[0]).toEqual(scheme.colors[0]);
 });
 
 it('should rotate hue wheel of all colors', ()=>{
-  let angle = 0.5;
+  let angle = 0.5,
+      hue = clone.colors[0].base.rotateHueWheel(angle).getHSV().h;
   scheme.rotate(angle);
+  expect(hue)
+    .toEqual(scheme.colors[0].base.getHSV().h);
 });
 
+it('should return a JSON', ()=>{
+  let scheme = new Scheme(),
+  json = scheme.toJSON();
+  expect(json).toEqual({name:undefined,colors:[{base: new Color()}]});
+});
+
+it('should return a JSON string reprecenting the object', ()=>{
+  let scheme = new Scheme(),
+  json = JSON.stringify(scheme);
+  expect(json).toBe(JSON.stringify({name:undefined,colors:[{base: new Color()}]}));
+});
 });
