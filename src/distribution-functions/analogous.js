@@ -1,6 +1,7 @@
+'use strict';
 const geometricProgression = require('./geometric-progression');
 
-function analogous(count, options){'use strict';
+function analogous(count, options){
 count = count || 1;
 options = options || {};
 let pivot = 0,
@@ -18,8 +19,8 @@ defaults = {
   invert: false
 };
 
-options.dist = options.dist || defaults.dist;
-options.invert = options.invert || defaults.invert;
+options = Object.assign(defaults, options);
+
 if(typeof options.dist === 'number'){
   distIncr = options.dist;
 } else{

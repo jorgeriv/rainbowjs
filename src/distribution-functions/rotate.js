@@ -1,10 +1,12 @@
-function rotate(count, options){'use strict';
+'use strict';
+
+function rotate(count, options){
   count = count || 1;
   options  = options || {};
   const COMPANG = 0.5; // Complementary Angle
   let
   defaults = {
-    length: 0.1,
+    length: 0.15,
     invert: false,
   },
   points = [],
@@ -13,8 +15,7 @@ function rotate(count, options){'use strict';
   nextAng;
 
   // Set default options if not defined;
-  options.length = options.length || defaults.length;
-  options.invert = options.invert || defaults.invert;
+  options = Object.assign(defaults, options);
 
   if(options.invert){
     options.length = -options.length;

@@ -1,7 +1,9 @@
 /**
 * Formula fron: http://www.easyrgb.com/index.php?X=MATH&H=21#text21
 */
-function hsv2rgb(h, s, v){'use strict';
+
+'use strict';
+function hsv2rgb(h, s, v){
   var r, g, b, _h, _i, _1, _2, _3;
   if(s === 0){
     r = g = b = 255;

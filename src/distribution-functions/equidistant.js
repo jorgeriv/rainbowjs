@@ -1,4 +1,5 @@
-function equidistant(count){'use strict';
+'use strict';
+function equidistant(count){
   count = count || 1;
   let distances = [],
       gap = 1 / count,

@@ -1,6 +1,7 @@
+'use strict';
 const complement = require('../../src/distribution-functions/complement');
 
-describe('Complement function', ()=>{'use strict';
+describe('Complement function', ()=>{
 
 it('should create an array with 2 element if no arguments are passed', ()=>{
   let result = complement();

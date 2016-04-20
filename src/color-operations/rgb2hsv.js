@@ -1,7 +1,9 @@
 /**
 * Formula from: http://www.easyrgb.com/index.php?X=MATH&H=20#text20
 */
-function rgb2hsv(r, g, b){'use strict';
+
+'use strict';
+function rgb2hsv(r, g, b){
   var h, s, v, min, max, del, delR, delG, delB;
   min = Math.min(r, g, b);
   max = Math.max(r, g, b);
