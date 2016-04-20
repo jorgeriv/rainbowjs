@@ -94,8 +94,56 @@ Scheme.prototype.generate = function generate(){
   });
 };
 
+Scheme.prototype.generateShades = function generateShades(colorIndex, shadesCount){
+  if(!colorIndex) return;
+  if(!shadesCount){
+    shadesCount = colorIndex;
+    colorIndex = -1;
+  }
+  if(colorIndex < 0){ // Apply to all colors
+    this.colors.forEach((color, index)=>{
+      this.colors[index].shades = color.base.getShades(shadesCount);
+    });
+  } else {
+    this.colors[colorIndex].shades = this.colors[colorIndex].base.getShades(shadesCount);
+  }
+  return this;
+};
+
+Scheme.prototype.generateTints = function generateTints(colorIndex, tintsCount){
+  if(!colorIndex) return;
+  if(!tintsCount){
+    tintsCount = colorIndex;
+    colorIndex = -1;
+  }
+  if(colorIndex < 0){ // Apply to all colors
+    this.colors.forEach((color, index)=>{
+      this.colors[index].tints = color.base.getTints(tintsCount);
+    });
+  } else {
+    this.colors[colorIndex].tints = this.colors[colorIndex].base.getTints(tintsCount);
+  }
+  return this;
+};
+
+Scheme.prototype.generateTones = function generateTones(colorIndex, tonesCount){
+  if(!colorIndex) return;
+  if(!tonesCount){
+    tonesCount = colorIndex;
+    colorIndex = -1;
+  }
+  if(colorIndex < 0){ // Apply to all colors
+    this.colors.forEach((color, index)=>{
+      this.colors[index].tones = color.base.getShades(tonesCount);
+    });
+  } else {
+    this.colors[colorIndex].tones = this.colors[colorIndex].base.getShades(tonesCount);
+  }
+  return this;
+};
+
 Scheme.prototype.traverse = function traverse(fn){
-  this.colors.forEach(function(colorSet){
+  this.colors.forEach((colorSet)=>{
     fn(colorSet.base);
     if(colorSet.shades && colorSet.shades.length > 0){
       colorSet.shades.forEach(fn);
@@ -109,6 +157,10 @@ Scheme.prototype.traverse = function traverse(fn){
       colorSet.tones.forEach(fn);
     }
   });
+};
+
+Scheme.prototype.clone = function clone(){
+  return new Scheme(this.toJSON());
 };
 
 module.exports = Scheme;
