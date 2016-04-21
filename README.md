@@ -3,12 +3,12 @@
 RainbowJS offers a solution to perform color operations as converting from different formats (eg. rgb to hsv), create color palettes based on color theory harmmonies. Is highly configurable and works both in the browser and node.
 
 Color harnomies:
--Complementary color
--Analogous colors
--Split complementary
--Triadic
--Tetradic (Rectangle)
--Squuere
+- Complementary color
+- Analogous colors
+- Split complementary
+- Triadic
+- Tetradic (Rectangle)
+- Squuere
 
 ##Install
 
