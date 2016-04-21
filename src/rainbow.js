@@ -3,7 +3,7 @@
 const Color = require('./color');
 const Scheme = require('./scheme');
 
-module.exposts = {
+module.exports = {
   Color: Color,
   Scheme: Scheme
 };
