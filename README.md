@@ -1,36 +1,32 @@
-# rainbow
-Rainbow.js is a library to programatically generate a color palette to use in automated template generators and other applications.
-## Known Bugs
-* Some times when a new scheme is created, colors apart from main color don't get created.
-(Seems like this happens when primary colors of the main color are too small or too big ej. 0, 255);
+# RainbowJS - A library to work with colors programatically
 
-## Road Map
+RainbowJS offers a solution to perform color operations as converting from different formats (eg. rgb to hsv), create color palettes based on color theory harmmonies. Is highly configurable and works both in the browser and node.
 
-### Version 1.0
+Color harnomies:
+-Complementary color
+-Analogous colors
+-Split complementary
+-Triadic
+-Tetradic (Rectangle)
+-Squuere
 
-### Functionality
-* Add hability to name colors
-* Add hability to get color JSON
-* Add hability to name schemes
-* Add hability to get scheme JSON
-* Add 'createscheme' method to Color objects
-* Add 'getShades' method to Color objects
-* Add 'getTints' method to Color objects
-* Add 'getTones' method to Color objects
-* Create point distribution functions - done
-* Create generator presets
-* Add scheme presets
-* Add colors presets (css color names)
+##Install
 
-### Refactoring
-* Change 'scheme' to 'scheme' in all code - done
-* Rename 'scheme' constructor to 'scheme' - dine
+### Node via NPM
+```
+$ npm install --save rainbowjs
+```
 
-### Other
-* Add unit tests - done
-* Create project website
-* Create documentation
-* Create build script
-* Create code examples
-* Add as a bower component (Nice to have: add to other package managers)
-* Create CONTRIBUTING.md file
+### Browser via Brower
+```
+$ bower install --save rainbowjs
+```
+RainbowJS is made with ES2015 (ES6) Vanilla JavaScript and has no dependencies.
+
+## Contributing
+We welcome contributions of all kinds from anyone. Please take a moment to read the [contributing](https://github.com/jorgeriv/rainbow/blob/master/CONTRIBUTTING.md) file
+for more information about how to contribute to the project.
+
+## License
+Copyright (c) Jorge Rivera
+Licensed under the MIT License
