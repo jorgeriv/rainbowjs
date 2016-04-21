@@ -2,7 +2,7 @@
   "name": "rainbowjs",
   "version": "0.1.0",
   "description": "JavaScript color library to create color schemes based on color theory harmonies",
-  "main": "index.js",
+  "main": "src/rainbow.js",
   "directories": {
     "test": "test"
   },
