@@ -29,4 +29,5 @@ for more information about how to contribute to the project.
 
 ## License
 Copyright (c) Jorge Rivera
+
 Licensed under the MIT License
