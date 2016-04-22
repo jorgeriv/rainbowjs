@@ -65,6 +65,10 @@ const colorPresets = require('./color-presets');
     let hr = this.r.toString(16),
         hg = this.g.toString(16),
         hb = this.b.toString(16);
+        // Ussing two places to represent each number
+        hr = hr.length < 2 ? '0' + hr : hr;
+        hg = hg.length < 2 ? '0' + hg : hg;
+        hb = hb.length < 2 ? '0' + hb : hb;
 
     return hr + hg + hb;
   };
