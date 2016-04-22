@@ -6,7 +6,7 @@
 
 
 ## How to Report Bugs
-
+RainbowJS GitHub repository [iusses](https://github.com/jorgeriv/RainbowJS/issues)
 ### Make sure it is a Rainbow bug
 
 ### Disable browser extensions
