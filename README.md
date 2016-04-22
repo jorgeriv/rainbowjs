@@ -10,6 +10,8 @@ Color harnomies:
 - Tetradic (Rectangle)
 - Squuere
 
+Visit the [project website](http://jorgeriv.github.io/RainbowJS/)
+
 ##Install
 
 ### Node via NPM
