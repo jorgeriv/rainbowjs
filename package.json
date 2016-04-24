@@ -36,6 +36,7 @@
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-jasmine": "^2.3.0"
+    "gulp-jasmine": "^2.3.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
