@@ -19,24 +19,31 @@ const colorPresets = require('./color-presets');
     this.b = obj.b || defaults.b;
   }
 
-  Color.prototype.setHSV = function setHSV(h, s, v){
-    let hsv = rgb2hsv(this.r, this.g, this.b),
-        rgb;
+  Color.prototype.HSV = function HSV(h, s, v){
+    let hIsSet = (typeof h === 'number'),
+        sIsSet = (typeof s === 'number'),
+        vIsSet = (typeof v === 'number');
 
-    h = h || hsv.h;
-    s = s || hsv.s;
-    v = v || hsv.v;
-    rgb = hsv2rgb(h, s, v);
-    this.r = rgb.r;
-    this.g = rgb.g;
-    this.b = rgb.b;
+    if(hIsSet || sIsSet || vIsSet){ // set behavior
+      let hsv = rgb2hsv(this.r, this.g, this.b),
+          rgb;
 
-    return this;
+      h = h || hsv.h;
+      s = s || hsv.s;
+      v = v || hsv.v;
+      rgb = hsv2rgb(h, s, v);
+      this.r = rgb.r;
+      this.g = rgb.g;
+      this.b = rgb.b;
+
+      return this;
+    } else { // get behavior
+
+      return rgb2hsv(this.r, this.g, this.b);
+    }
+
   };
 
-  Color.prototype.getHSV = function getHSV(){
-    return rgb2hsv(this.r, this.g, this.b);
-  };
 
   Color.prototype.setRGB= function setRGB(r, g, b){
     r = r || this.r;
@@ -74,26 +81,26 @@ const colorPresets = require('./color-presets');
   };
 
   Color.prototype.rotateHueWheel = function rotateHueWheel(angle){
-    var hsv = this.getHSV();
+    var hsv = this.HSV();
     hsv.h += angle;
     if(hsv.h > 1){
       hsv.h -= 1;
     }
-    this.setHSV(hsv.h);
+    this.HSV(hsv.h);
     return this;
   };
 
   Color.prototype.setHue = function setHue(hue){
-    this.setHSV(hue);
+    this.HSV(hue);
     return this;
   };
 
   Color.prototype.setSaturation = function setSaturation(saturation){
-    return this.setHSV(null,saturation);
+    return this.HSV(null,saturation);
   };
 
   Color.prototype.setValue = function setValue(value){
-    return this.setHSV(null, null, value);
+    return this.HSV(null, null, value);
   };
 
   Color.prototype.getShades = function getShades(count, distType, options){

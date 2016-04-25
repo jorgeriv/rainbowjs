@@ -67,7 +67,7 @@ describe('Color object', ()=>{
     // Get color's HSV values
     it('should get hsv', ()=>{
       let color = new Color(),
-          hsv = color.getHSV();
+          hsv = color.HSV();
 
       expect(hsv.h).toBe(0);
       expect(hsv.s).toBe(1);
@@ -86,32 +86,32 @@ describe('Color object', ()=>{
     it('should set hue value', ()=>{
       let color = new Color(),
       hue = 0.5;
-      color.setHSV(hue);
-      expect(color.getHSV().h).toBeCloseTo(hue, 1);
+      color.HSV(hue);
+      expect(color.HSV().h).toBeCloseTo(hue, 1);
     });
 
     // Set color's saturation
     it('should set saturation value', ()=>{
       let color = new Color(),
       saturation = 0.5;
-      color.setHSV(null, saturation);
-      expect(color.getHSV().s).toBeCloseTo(saturation, 1);
+      color.HSV(null, saturation);
+      expect(color.HSV().s).toBeCloseTo(saturation, 1);
     });
 
     // Set color's value
     it('should set value value', ()=>{
       let color = new Color(),
       value = 0.5;
-      color.setHSV(null, null, value);
-      expect(color.getHSV().v).toBeCloseTo(value, 1);
+      color.HSV(null, null, value);
+      expect(color.HSV().v).toBeCloseTo(value, 1);
     });
-    
+
     it('should rotate hue wheel', ()=>{
       let color = new Color(),
-          originalHue = color.getHSV().h;
+          originalHue = color.HSV().h;
           color.rotateHueWheel(0.1);
       expect(originalHue)
-        .toBeLessThan(color.getHSV().h);
+        .toBeLessThan(color.HSV().h);
     });
   });// <<< set individual color vaules
 

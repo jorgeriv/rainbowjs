@@ -86,24 +86,24 @@ describe('modifiers', ()=>{
     let scheme = new Scheme(),
         clone = scheme.clone(),
         angle = 0.5,
-        hue = clone.colors[0].base.rotateHueWheel(angle).getHSV().h;
+        hue = clone.colors[0].base.rotateHueWheel(angle).HSV().h;
 
     scheme.rotate(angle);
-    expect(scheme.colors[0].base.getHSV().h).toEqual(hue - angle);
+    expect(scheme.colors[0].base.HSV().h).toEqual(hue - angle);
   });
 
   it('should set the saturation value to all colors in the scheme',()=>{
     let saturation = 0.5,
         scheme = new Scheme();
     scheme.setSaturation(saturation);
-    expect(scheme.colors[0].base.getHSV().s).toBeCloseTo(saturation, 1);
+    expect(scheme.colors[0].base.HSV().s).toBeCloseTo(saturation, 1);
   });
 
   it('should set the value to all colors in the scheme',()=>{
     let value = 0.5,
         scheme = new Scheme();
     scheme.flatten(value);
-    expect(scheme.colors[0].base.getHSV().v).toBeCloseTo(value, 1);
+    expect(scheme.colors[0].base.HSV().v).toBeCloseTo(value, 1);
   });
 
 });// <<< modifiers

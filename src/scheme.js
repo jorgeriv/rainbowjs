@@ -36,18 +36,18 @@ Scheme.prototype.rotate = function rotate(angle){
 };
 
 Scheme.prototype.setSaturation = function setSaturation(saturation){
-  saturation = saturation || this.colors[0].base.getHSV().s;
+  saturation = saturation || this.colors[0].base.HSV().s;
   function saturateColors(color){
-    color.setHSV(null, saturation);
+    color.HSV(null, saturation);
   }
   this.traverse(saturateColors);
   return this;
 };
 
 Scheme.prototype.flatten = function flatten(value){
-  value = value || this.colors[0].base.getHSV().v;
+  value = value || this.colors[0].base.HSV().v;
   function flattenColors(color){
-    color.setHSV(null, null, value);
+    color.HSV(null, null, value);
   }
 
   this.traverse(flattenColors);
