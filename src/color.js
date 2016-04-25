@@ -160,13 +160,12 @@ const colorPresets = require('./color-presets');
   Color.prototype.createScheme = function createscheme(){
   };
 
-  Color.prototype.setName = function setName(name){
+  Color.prototype.name = function name(name){
+    if(arguments.length === 0){ // Get behavior
+      return this.name;
+    } // Set behavior
     this.name = name;
     return this;
-  };
-
-  Color.prototype.getName = function getName(){
-    return this.name;
   };
 
   Color.prototype.setColorByName = function setColorByName(name){
