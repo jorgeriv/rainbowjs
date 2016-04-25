@@ -20,7 +20,7 @@ describe('Color object', ()=>{
         b: 255
       };
       color = new Color(config);
-      expect(color.name).toBe(config.name);
+      expect(color.name()).toBe(config.name);
       expect(color.r).toBe(config.r);
       expect(color.g).toBe(config.g);
       expect(color.b).toBe(config.b);

@@ -13,7 +13,7 @@ const colorPresets = require('./color-presets');
     };
     obj = obj || {};
 
-    this.name = obj.name;
+    this._name = obj.name;
     this.r = obj.r || defaults.r;
     this.g = obj.g || defaults.g;
     this.b = obj.b || defaults.b;
@@ -162,9 +162,9 @@ const colorPresets = require('./color-presets');
 
   Color.prototype.name = function name(name){
     if(arguments.length === 0){ // Get behavior
-      return this.name;
+      return this._name;
     } // Set behavior
-    this.name = name;
+    this._name = name;
     return this;
   };
 
@@ -182,7 +182,7 @@ const colorPresets = require('./color-presets');
     } // Set behavior
     hexString = colorPresets[name];
     if(typeof hexString === 'string'){
-      this.name = name;
+      this._name = name;
       this.hex(hexString);
     } else{
       throw new Error(`color ${name} is not defined`);
@@ -192,7 +192,7 @@ const colorPresets = require('./color-presets');
 
   Color.prototype.clone = function clone(){
     let obj = {
-      name: this.name,
+      name: this._name,
       r: this.r,
       g: this.g,
       b: this.b
@@ -202,7 +202,7 @@ const colorPresets = require('./color-presets');
 
   Color.prototype.toJSON = function toJSON(){
     return {
-      name: this.name,
+      name: this._name,
       r: this.r,
       g: this.g,
       b: this.b
