@@ -20,11 +20,11 @@ const colorPresets = require('./color-presets');
   }
 
   Color.prototype.HSV = function HSV(h, s, v){
-    let hIsSet = (typeof h === 'number'),
-        sIsSet = (typeof s === 'number'),
-        vIsSet = (typeof v === 'number');
 
-    if(hIsSet || sIsSet || vIsSet){ // set behavior
+    if(arguments.length === 0){ // set behavior
+      return rgb2hsv(this.r, this.g, this.b);
+
+    } else { // get behavior
       let hsv = rgb2hsv(this.r, this.g, this.b),
           rgb;
 
@@ -37,9 +37,6 @@ const colorPresets = require('./color-presets');
       this.b = rgb.b;
 
       return this;
-    } else { // get behavior
-
-      return rgb2hsv(this.r, this.g, this.b);
     }
 
   };
