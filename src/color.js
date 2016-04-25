@@ -24,7 +24,7 @@ const colorPresets = require('./color-presets');
     if(arguments.length === 0){ // set behavior
       return rgb2hsv(this.r, this.g, this.b);
 
-    } else { // get behavior
+    } // get behavior
       let hsv = rgb2hsv(this.r, this.g, this.b),
           rgb;
 
@@ -37,12 +37,14 @@ const colorPresets = require('./color-presets');
       this.b = rgb.b;
 
       return this;
-    }
 
   };
 
 
-  Color.prototype.setRGB= function setRGB(r, g, b){
+  Color.prototype.RGB = function RGB(r, g, b){
+    if(arguments.length === 0){ // Get
+      return {r: this.r, g: this.g, b: this.b};
+    } // Set
     r = r || this.r;
     g = g || this.g;
     b = b || this.b;
@@ -52,30 +54,27 @@ const colorPresets = require('./color-presets');
     return this;
   };
 
-  Color.prototype.getRGB = function getRGB(){
-    return {r: this.r, g: this.g, b: this.b};
-  };
 
-  Color.prototype.setHRGB = function setHRGB(hexString){
+  Color.prototype.hex = function hex(hexString){
+    if(arguments.length === 0){
+      let hr = this.r.toString(16),
+          hg = this.g.toString(16),
+          hb = this.b.toString(16);
+          // Ussing two places to represent each number
+          hr = hr.length < 2 ? '0' + hr : hr;
+          hg = hg.length < 2 ? '0' + hg : hg;
+          hb = hb.length < 2 ? '0' + hb : hb;
+
+      return hr + hg + hb;
+    }
     let r = parseInt(hexString.substr(0, 2), 16),
         g = parseInt(hexString.substr(2, 2), 16),
         b = parseInt(hexString.substr(4, 2), 16);
 
-    this.setRGB(r, g, b);
+    this.RGB(r, g, b);
     return this;
   };
 
-  Color.prototype.getHRGB = function getHRGB(){
-    let hr = this.r.toString(16),
-        hg = this.g.toString(16),
-        hb = this.b.toString(16);
-        // Ussing two places to represent each number
-        hr = hr.length < 2 ? '0' + hr : hr;
-        hg = hg.length < 2 ? '0' + hg : hg;
-        hb = hb.length < 2 ? '0' + hb : hb;
-
-    return hr + hg + hb;
-  };
 
   Color.prototype.rotateHueWheel = function rotateHueWheel(angle){
     var hsv = this.HSV();
@@ -87,17 +86,19 @@ const colorPresets = require('./color-presets');
     return this;
   };
 
-  Color.prototype.setHue = function setHue(hue){
-    this.HSV(hue);
-    return this;
+  Color.prototype.hue = function hue(hue){
+    if(arguments.length === 0)return this.HSV().h; // Get behavior
+    return this.HSV(hue); // Set behavior
   };
 
-  Color.prototype.setSaturation = function setSaturation(saturation){
-    return this.HSV(null,saturation);
+  Color.prototype.saturation = function saturation(saturation){
+    if(arguments.length === 0) return this.HSV().s; // Get behavior
+    return this.HSV(null,saturation); // Set behavior
   };
 
-  Color.prototype.setValue = function setValue(value){
-    return this.HSV(null, null, value);
+  Color.prototype.value = function value(value){
+    if (arguments.length === 0) return this.HSV().v; // Get behavior
+    return this.HSV(null, null, value); // Set behavior
   };
 
   Color.prototype.getShades = function getShades(count, distType, options){
@@ -111,7 +112,7 @@ const colorPresets = require('./color-presets');
       distGenerator(config)
         .forEach((point)=>{
           var shade = this.clone();
-          return shades.push(shade.setValue(point));
+          return shades.push(shade.value(point));
         });
 
       //return new colors which are shades of original color
@@ -129,7 +130,7 @@ const colorPresets = require('./color-presets');
     distGenerator(config)
       .forEach((point)=>{
         var tint = this.clone();
-        return tints.push(tint.setSaturation(point));
+        return tints.push(tint.value(point));
       });
 
     //return new colors which are tints of original color
@@ -147,8 +148,8 @@ const colorPresets = require('./color-presets');
     distGenerator(config)
       .forEach((point)=>{
         var tone = this.clone();
-        tone.setSaturation(point);
-        tone.setValue(point);
+        tone.value(point);
+        tone.value(point);
         return tones.push(tone);
       });
 
@@ -172,7 +173,7 @@ const colorPresets = require('./color-presets');
     let hexString = colorPresets[name];
     if(typeof hexString === 'string'){
       this.name = name;
-      this.setHRGB(hexString);
+      this.hex(hexString);
     } else{
       throw new Error(`color ${name} is not defined`);
     }

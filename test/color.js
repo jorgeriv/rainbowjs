@@ -31,7 +31,7 @@ describe('Color object', ()=>{
     let color = new Color();
     // Change color's RGB values
     it('should modify rgb values', ()=>{
-      color.setRGB(20, 20, 255);
+      color.RGB(20, 20, 255);
       expect(color.r).toBe(20);
       expect(color.g).toBe(20);
       expect(color.b).toBe(255);
@@ -40,7 +40,7 @@ describe('Color object', ()=>{
     // Set color's RGB values via hex string
     it('should set hex RGB', ()=>{
       let color = new Color(),
-      hrgb = color.setHRGB('ffffff');
+      hrgb = color.hex('ffffff');
 
       expect(hrgb.r).toBe(255);
       expect(hrgb.g).toBe(255);
@@ -52,7 +52,7 @@ describe('Color object', ()=>{
           rebeccapurple = color.setColorByName('rebeccapurple');
 
       expect(rebeccapurple instanceof Object).toBe(true);
-      expect(rebeccapurple.getHRGB()).toBe('663399');
+      expect(rebeccapurple.hex()).toBe('663399');
     });
 
     it('should throw when setting an undefined name', ()=>{
@@ -76,7 +76,7 @@ describe('Color object', ()=>{
     // Get color's Hex RGB values
     it('should get hex string', ()=>{
       let color = new Color();
-      let hrgb = color.getHRGB();
+      let hrgb = color.hex();
       expect(hrgb).toBe('ff0000');
     });
   });// <<< get color
