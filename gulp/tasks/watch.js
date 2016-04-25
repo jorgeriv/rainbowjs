@@ -1,6 +1,7 @@
 'use strict';
 const gulp = require('gulp');
-
-gulp.task('develop', ()=>{
-gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test']);
-});
+module.exports = ()=>{
+  return gulp.task('watch',['test'], ()=>{
+    gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test']);
+  });
+};
