@@ -13,32 +13,38 @@ const colorPresets = require('./color-presets');
     };
     obj = obj || {};
 
-    this.name = obj.name;
+    this._name = obj.name;
     this.r = obj.r || defaults.r;
     this.g = obj.g || defaults.g;
     this.b = obj.b || defaults.b;
   }
 
-  Color.prototype.setHSV = function setHSV(h, s, v){
-    let hsv = rgb2hsv(this.r, this.g, this.b),
-        rgb;
+  Color.prototype.HSV = function HSV(h, s, v){
 
-    h = h || hsv.h;
-    s = s || hsv.s;
-    v = v || hsv.v;
-    rgb = hsv2rgb(h, s, v);
-    this.r = rgb.r;
-    this.g = rgb.g;
-    this.b = rgb.b;
+    if(arguments.length === 0){ // set behavior
+      return rgb2hsv(this.r, this.g, this.b);
 
-    return this;
+    } // get behavior
+      let hsv = rgb2hsv(this.r, this.g, this.b),
+          rgb;
+
+      h = h || hsv.h;
+      s = s || hsv.s;
+      v = v || hsv.v;
+      rgb = hsv2rgb(h, s, v);
+      this.r = rgb.r;
+      this.g = rgb.g;
+      this.b = rgb.b;
+
+      return this;
+
   };
 
-  Color.prototype.getHSV = function getHSV(){
-    return rgb2hsv(this.r, this.g, this.b);
-  };
 
-  Color.prototype.setRGB= function setRGB(r, g, b){
+  Color.prototype.RGB = function RGB(r, g, b){
+    if(arguments.length === 0){ // Get
+      return {r: this.r, g: this.g, b: this.b};
+    } // Set
     r = r || this.r;
     g = g || this.g;
     b = b || this.b;
@@ -48,52 +54,51 @@ const colorPresets = require('./color-presets');
     return this;
   };
 
-  Color.prototype.getRGB = function getRGB(){
-    return {r: this.r, g: this.g, b: this.b};
-  };
 
-  Color.prototype.setHRGB = function setHRGB(hexString){
+  Color.prototype.hex = function hex(hexString){
+    if(arguments.length === 0){
+      let hr = this.r.toString(16),
+          hg = this.g.toString(16),
+          hb = this.b.toString(16);
+          // Ussing two places to represent each number
+          hr = hr.length < 2 ? '0' + hr : hr;
+          hg = hg.length < 2 ? '0' + hg : hg;
+          hb = hb.length < 2 ? '0' + hb : hb;
+
+      return hr + hg + hb;
+    }
     let r = parseInt(hexString.substr(0, 2), 16),
         g = parseInt(hexString.substr(2, 2), 16),
         b = parseInt(hexString.substr(4, 2), 16);
 
-    this.setRGB(r, g, b);
+    this.RGB(r, g, b);
     return this;
   };
 
-  Color.prototype.getHRGB = function getHRGB(){
-    let hr = this.r.toString(16),
-        hg = this.g.toString(16),
-        hb = this.b.toString(16);
-        // Ussing two places to represent each number
-        hr = hr.length < 2 ? '0' + hr : hr;
-        hg = hg.length < 2 ? '0' + hg : hg;
-        hb = hb.length < 2 ? '0' + hb : hb;
-
-    return hr + hg + hb;
-  };
 
   Color.prototype.rotateHueWheel = function rotateHueWheel(angle){
-    var hsv = this.getHSV();
+    var hsv = this.HSV();
     hsv.h += angle;
     if(hsv.h > 1){
       hsv.h -= 1;
     }
-    this.setHSV(hsv.h);
+    this.HSV(hsv.h);
     return this;
   };
 
-  Color.prototype.setHue = function setHue(hue){
-    this.setHSV(hue);
-    return this;
+  Color.prototype.hue = function hue(hue){
+    if(arguments.length === 0)return this.HSV().h; // Get behavior
+    return this.HSV(hue); // Set behavior
   };
 
-  Color.prototype.setSaturation = function setSaturation(saturation){
-    return this.setHSV(null,saturation);
+  Color.prototype.saturation = function saturation(saturation){
+    if(arguments.length === 0) return this.HSV().s; // Get behavior
+    return this.HSV(null,saturation); // Set behavior
   };
 
-  Color.prototype.setValue = function setValue(value){
-    return this.setHSV(null, null, value);
+  Color.prototype.value = function value(value){
+    if (arguments.length === 0) return this.HSV().v; // Get behavior
+    return this.HSV(null, null, value); // Set behavior
   };
 
   Color.prototype.getShades = function getShades(count, distType, options){
@@ -107,7 +112,7 @@ const colorPresets = require('./color-presets');
       distGenerator(config)
         .forEach((point)=>{
           var shade = this.clone();
-          return shades.push(shade.setValue(point));
+          return shades.push(shade.value(point));
         });
 
       //return new colors which are shades of original color
@@ -125,7 +130,7 @@ const colorPresets = require('./color-presets');
     distGenerator(config)
       .forEach((point)=>{
         var tint = this.clone();
-        return tints.push(tint.setSaturation(point));
+        return tints.push(tint.value(point));
       });
 
     //return new colors which are tints of original color
@@ -143,8 +148,8 @@ const colorPresets = require('./color-presets');
     distGenerator(config)
       .forEach((point)=>{
         var tone = this.clone();
-        tone.setSaturation(point);
-        tone.setValue(point);
+        tone.value(point);
+        tone.value(point);
         return tones.push(tone);
       });
 
@@ -155,20 +160,30 @@ const colorPresets = require('./color-presets');
   Color.prototype.createScheme = function createscheme(){
   };
 
-  Color.prototype.setName = function setName(name){
-    this.name = name;
+  Color.prototype.name = function name(name){
+    if(arguments.length === 0){ // Get behavior
+      return this._name;
+    } // Set behavior
+    this._name = name;
     return this;
   };
 
-  Color.prototype.getName = function getName(){
-    return this.name;
-  };
-
-  Color.prototype.setColorByName = function setColorByName(name){
-    let hexString = colorPresets[name];
+  Color.prototype.cssName = function cssName(name){
+    let hexString;
+    if(arguments.length === 0){ // Get behavior
+        hexString = this.hex();
+        for(let key in colorPresets){
+          if(colorPresets[key] === hexString){
+            return key;
+          }
+        }
+        // Not found, return undefined
+        return void 0;
+    } // Set behavior
+    hexString = colorPresets[name];
     if(typeof hexString === 'string'){
-      this.name = name;
-      this.setHRGB(hexString);
+      this._name = name;
+      this.hex(hexString);
     } else{
       throw new Error(`color ${name} is not defined`);
     }
@@ -177,7 +192,7 @@ const colorPresets = require('./color-presets');
 
   Color.prototype.clone = function clone(){
     let obj = {
-      name: this.name,
+      name: this._name,
       r: this.r,
       g: this.g,
       b: this.b
@@ -187,7 +202,7 @@ const colorPresets = require('./color-presets');
 
   Color.prototype.toJSON = function toJSON(){
     return {
-      name: this.name,
+      name: this._name,
       r: this.r,
       g: this.g,
       b: this.b

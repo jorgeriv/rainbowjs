@@ -6,25 +6,24 @@ const schemeDefinitions = require('./scheme-definitions');
 
 function Scheme(options){
   options = options || {};
-  this.name = options.name || undefined;
+  this._name = options.name || undefined;
   this.colors = options.colors || [{base: new Color()}];
 }
 
 Scheme.prototype.toJSON = function toJSON(){
 
   return {
-    name: this.name,
+    name: this._name,
     colors: this.colors
   };
 };
 
-Scheme.prototype.setName = function setName(name){
-  this.name = name;
+Scheme.prototype.name = function name(name){
+  if(arguments.length === 0){ // Get behavior
+    return this._name;
+  } // Set behavior
+  this._name = name;
   return this;
-};
-
-Scheme.prototype.getName = function getName(){
-  return this.name;
 };
 
 Scheme.prototype.rotate = function rotate(angle){
@@ -36,18 +35,18 @@ Scheme.prototype.rotate = function rotate(angle){
 };
 
 Scheme.prototype.setSaturation = function setSaturation(saturation){
-  saturation = saturation || this.colors[0].base.getHSV().s;
+  saturation = saturation || this.colors[0].base.HSV().s;
   function saturateColors(color){
-    color.setHSV(null, saturation);
+    color.HSV(null, saturation);
   }
   this.traverse(saturateColors);
   return this;
 };
 
 Scheme.prototype.flatten = function flatten(value){
-  value = value || this.colors[0].base.getHSV().v;
+  value = value || this.colors[0].base.HSV().v;
   function flattenColors(color){
-    color.setHSV(null, null, value);
+    color.HSV(null, null, value);
   }
 
   this.traverse(flattenColors);
@@ -56,7 +55,7 @@ Scheme.prototype.flatten = function flatten(value){
 
 
 Scheme.prototype.reset = function reset(){
-  this.name = undefined;
+  this._name = undefined;
   this.colors = [{base: new Color()}];
   return this;
 };
@@ -162,7 +161,7 @@ Scheme.prototype.traverse = function traverse(fn){
 
 Scheme.prototype.clone = function clone(){
   return new Scheme({
-    name: this.name,
+    name: this._name,
     colors: this.colors
   });
 };

@@ -9,7 +9,7 @@ describe('instantiation', ()=>{
     let scheme = new Scheme();
     expect(scheme instanceof Object).toBe(true);
     expect(scheme.colors[0].base).toEqual(new Color());
-    expect(scheme.name).toBeUndefined();
+    expect(scheme.name()).toBeUndefined();
   });
 
   it('should create and initializate an scheme', ()=>{
@@ -19,7 +19,7 @@ describe('instantiation', ()=>{
       colors:[{base: (new Color()).toJSON()}]
     };
     scheme = new Scheme(config);
-    expect(scheme.name).toBe(config.name);
+    expect(scheme.name()).toBe(config.name);
     expect(scheme.colors).toBeDefined();
     expect(scheme.colors[0].base).toEqual((new Color()).toJSON());
   });
@@ -71,39 +71,38 @@ describe('modifiers', ()=>{
   it('should name an scheme', ()=>{
     let scheme = new Scheme(),
         name = 'test';
-    scheme.setName(name);
-    expect(scheme.name).toBeDefined();
-    expect(scheme.getName()).toBe(name);
+    scheme.name(name);
+    expect(scheme.name()).toBe(name);
   });
 
   it('should reset scheme to initial default values', ()=>{
     let scheme = new Scheme({name: 'test'});
     scheme.reset();
-    expect(scheme.name).toBeUndefined();
+    expect(scheme.name()).toBeUndefined();
   });
 
   it('should rotate hue wheel of all colors', ()=>{
     let scheme = new Scheme(),
         clone = scheme.clone(),
         angle = 0.5,
-        hue = clone.colors[0].base.rotateHueWheel(angle).getHSV().h;
+        hue = clone.colors[0].base.rotateHueWheel(angle).HSV().h;
 
     scheme.rotate(angle);
-    expect(scheme.colors[0].base.getHSV().h).toEqual(hue - angle);
+    expect(scheme.colors[0].base.HSV().h).toEqual(hue - angle);
   });
 
   it('should set the saturation value to all colors in the scheme',()=>{
     let saturation = 0.5,
         scheme = new Scheme();
     scheme.setSaturation(saturation);
-    expect(scheme.colors[0].base.getHSV().s).toBeCloseTo(saturation, 1);
+    expect(scheme.colors[0].base.HSV().s).toBeCloseTo(saturation, 1);
   });
 
   it('should set the value to all colors in the scheme',()=>{
     let value = 0.5,
         scheme = new Scheme();
     scheme.flatten(value);
-    expect(scheme.colors[0].base.getHSV().v).toBeCloseTo(value, 1);
+    expect(scheme.colors[0].base.HSV().v).toBeCloseTo(value, 1);
   });
 
 });// <<< modifiers
