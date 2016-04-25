@@ -168,8 +168,19 @@ const colorPresets = require('./color-presets');
     return this;
   };
 
-  Color.prototype.setColorByName = function setColorByName(name){
-    let hexString = colorPresets[name];
+  Color.prototype.cssName = function cssName(name){
+    let hexString;
+    if(arguments.length === 0){ // Get behavior
+        hexString = this.hex();
+        for(let key in colorPresets){
+          if(colorPresets[key] === hexString){
+            return key;
+          }
+        }
+        // Not found, return undefined
+        return void 0;
+    } // Set behavior
+    hexString = colorPresets[name];
     if(typeof hexString === 'string'){
       this.name = name;
       this.hex(hexString);

@@ -49,7 +49,7 @@ describe('Color object', ()=>{
 
     it('should set the color by CSS name', ()=>{
       let color = new Color(),
-          rebeccapurple = color.setColorByName('rebeccapurple');
+          rebeccapurple = color.cssName('rebeccapurple');
 
       expect(rebeccapurple instanceof Object).toBe(true);
       expect(rebeccapurple.hex()).toBe('663399');
@@ -58,7 +58,7 @@ describe('Color object', ()=>{
     it('should throw when setting an undefined name', ()=>{
       let color = new Color();
       expect(()=>{
-        color.setColorByName('badname');
+        color.cssName('badname');
       }).toThrowError('color badname is not defined');
     });
   });// <<< update color
