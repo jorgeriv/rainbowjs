@@ -15,6 +15,6 @@ module.exports = ()=>{
   return gulp.task('bower', ['browserify'], ()=>{
     gulp.src(`dist/rainbow-${ver}.js`)
     .pipe(rename({basename:'rainbow', extname:'.js'}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('bower-rainbow'));
   });
 };
