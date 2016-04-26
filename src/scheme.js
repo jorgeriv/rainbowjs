@@ -53,7 +53,6 @@ Scheme.prototype.flatten = function flatten(value){
   return this;
 };
 
-
 Scheme.prototype.reset = function reset(){
   this._name = undefined;
   this.colors = [{base: new Color()}];
