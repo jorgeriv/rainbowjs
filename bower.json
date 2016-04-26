@@ -23,8 +23,16 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
     "test",
-    "tests"
+    "README.md",
+    "CONTRIBUTING.md",
+    ".babelrc",
+    ".editorconfig",
+    ".jshintrc",
+    ".travis.yml",
+    "bower.json",
+    "gulpfile.js",
+    "gulp",
+    "src"
   ]
 }
