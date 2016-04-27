@@ -15,10 +15,10 @@ module.exports = ()=>{
   return gulp.task('browserify', function(){
     let ver = getPackageJsonVersion();
     return browserify('./src/rainbow.js')
-        .bundle()
-        //Pass desired output filename to vinyl-source-stream
-        .pipe(source(`rainbow-${ver}.js`))
-        // Start piping stream to tasks!
-        .pipe(gulp.dest('./dist/'));
+    .bundle()
+    //Pass desired output filename to vinyl-source-stream
+    .pipe(source(`rainbow-${ver}.js`))
+    // Start piping stream to tasks!
+    .pipe(gulp.dest('./dist/'));
   });
 };

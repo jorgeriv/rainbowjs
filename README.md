@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jorgeriv/RainbowJS.svg?branch=next)](https://travis-ci.org/jorgeriv/RainbowJS)
 # RainbowJS - A library to work with colors programatically
 
 RainbowJS offers a solution to perform color operations as converting from different formats (eg. rgb to hsv), create color palettes based on color theory harmmonies. Is highly configurable and works both in the browser and node.
@@ -10,7 +11,7 @@ Color harnomies:
 - Tetradic (Rectangle)
 - Squuere
 
-Visit the [project website](http://jorgeriv.github.io/RainbowJS/)
+Visit the [project website](http://jorgeriv.github.io/rainbowjs/)
 
 ##Install
 
@@ -26,7 +27,7 @@ $ bower install --save rainbowjs
 RainbowJS is made with ES2015 (ES6) Vanilla JavaScript and has no dependencies.
 
 ## Contributing
-We welcome contributions of all kinds from anyone. Please take a moment to read the [contributing](https://github.com/jorgeriv/rainbow/blob/master/CONTRIBUTTING.md) file
+We welcome contributions of all kinds from anyone. Please take a moment to read the [contributing](https://github.com/jorgeriv/rainbowjs/blob/master/CONTRIBUTTING.md) file
 for more information about how to contribute to the project.
 
 ## License
