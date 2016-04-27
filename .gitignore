@@ -12,3 +12,4 @@ npm-debug.log
 /build
 /node_modules
 /vendor
+/bower-rainbow
