@@ -77,6 +77,7 @@ Scheme.prototype.configure = function configure(options){
   }
 
   this.config = options;
+  return this;
 };
 
 Scheme.prototype.generate = function generate(){
