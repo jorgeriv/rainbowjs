@@ -5,9 +5,10 @@ const gulp = require('./gulp')([
     'watch',
     'test',
     'minify',
-    'bower'
+    'bower',
+    'clean'
 ]);
 
-gulp.task('build', ['browserify', 'minify', 'bower']);
+gulp.task('build', ['clean', 'browserify', 'minify', 'bower']);
 gulp.task('develop', ['test', 'watch']);
 gulp.task('default', ['test']);
