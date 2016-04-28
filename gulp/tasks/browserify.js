@@ -12,7 +12,7 @@ function getPackageJsonVersion () {
 }
 
 module.exports = ()=>{
-  return gulp.task('browserify', function(){
+  return gulp.task('browserify', ['clean'], ()=>{
     let ver = getPackageJsonVersion();
     return browserify('./src/rainbow.js')
     .bundle()
