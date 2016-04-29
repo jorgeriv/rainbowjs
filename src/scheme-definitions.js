@@ -23,7 +23,7 @@ let schemePresets = {
     fn: 'equidistant'
   },
 
-  squere: {
+  square: {
     count: 4,
     fn: 'equidistant'
   },
