@@ -13,7 +13,7 @@ Color harnomies:
 
 Visit the [project website](http://jorgeriv.github.io/rainbowjs/)
 
-##Install
+## Install
 
 ### Node via NPM
 ```

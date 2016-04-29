@@ -12,6 +12,7 @@
   "scripts": {
     "test": "gulp test"
   },
+  "tonicExampleFilename": "examples/tonic.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jorgeriv/rainbowjs.git"
