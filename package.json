@@ -1,6 +1,6 @@
 {
   "name": "rainbowjs",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "JavaScript color library to create color schemes based on color theory harmonies",
   "main": "src/rainbow.js",
   "engines": {
@@ -12,6 +12,7 @@
   "scripts": {
     "test": "gulp test"
   },
+  "tonicExampleFilename": "examples/tonic.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jorgeriv/rainbowjs.git"

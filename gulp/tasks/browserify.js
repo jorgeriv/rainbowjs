@@ -14,7 +14,7 @@ function getPackageJsonVersion () {
 module.exports = ()=>{
   return gulp.task('browserify', ['clean'], ()=>{
     let ver = getPackageJsonVersion();
-    return browserify('./src/rainbow.js')
+    return browserify('./src/browser-rainbow.js')
     .bundle()
     //Pass desired output filename to vinyl-source-stream
     .pipe(source(`rainbow-${ver}.js`))
