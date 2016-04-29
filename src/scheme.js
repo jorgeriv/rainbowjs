@@ -69,10 +69,13 @@ Scheme.prototype.flatten = function flatten(value){
   return this;
 };
 
-Scheme.prototype.reset = function reset(){
-  this._name = undefined;
-  this.colors = [{base: new Color()}];
-  return this;
+Scheme.prototype.reset = function reset(type){
+  if(type === 'hard'){
+    this._name = undefined;
+    this.colors = [{base: new Color()}];
+    return this;
+  }
+  this.colors.length = 1;
 };
 
 Scheme.prototype.homogenize = function homogenize(saturation, value){
@@ -98,7 +101,7 @@ Scheme.prototype.configure = function configure(options){
 
 Scheme.prototype.generate = function generate(){
   let angles;
-
+  this.reset();
   angles = distributionGenerator(this.config);
   angles.forEach((angle, index)=>{
     if(index === 0){ // first iteration is the main color which is already in the array

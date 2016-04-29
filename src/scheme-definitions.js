@@ -7,13 +7,13 @@ let schemePresets = {
   },
 
   complementary: {
-    count: 2,
+    count: 1,
     fn: 'complement',
     options: {}
   },
 
   splitComplementary: {
-    count: 3,
+    count: 2,
     fn: 'complement',
     options: {}
   },
