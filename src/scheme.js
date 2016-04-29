@@ -5,9 +5,25 @@ const distributionGenerator = require('./distribution-generator');
 const schemeDefinitions = require('./scheme-definitions');
 
 function Scheme(options){
+  let that = this;
   options = options || {};
   this._name = options.name || undefined;
-  this.colors = options.colors || [{base: new Color()}];
+  this.colors = [{}];
+  function createColors(color, ii, key, jj){
+    if(!jj){
+      that.colors[ii][key] = new Color(color);
+    } else {
+      if(!that.colors[ii][key]){
+        that.colors[ii][key] = [];
+      }
+      that.colors[ii][key][jj] = new Color(color);
+    }
+  }
+  if(options.colors && (options.colors instanceof Array)){
+    this.traverse.call(options, createColors);
+  } else {
+    this.colors.push({base: new Color()});
+  }
 }
 
 Scheme.prototype.toJSON = function toJSON(){
@@ -53,10 +69,13 @@ Scheme.prototype.flatten = function flatten(value){
   return this;
 };
 
-Scheme.prototype.reset = function reset(){
-  this._name = undefined;
-  this.colors = [{base: new Color()}];
-  return this;
+Scheme.prototype.reset = function reset(type){
+  if(type === 'hard'){
+    this._name = undefined;
+    this.colors = [{base: new Color()}];
+    return this;
+  }
+  this.colors.length = 1;
 };
 
 Scheme.prototype.homogenize = function homogenize(saturation, value){
@@ -82,7 +101,7 @@ Scheme.prototype.configure = function configure(options){
 
 Scheme.prototype.generate = function generate(){
   let angles;
-
+  this.reset();
   angles = distributionGenerator(this.config);
   angles.forEach((angle, index)=>{
     if(index === 0){ // first iteration is the main color which is already in the array
@@ -143,18 +162,24 @@ Scheme.prototype.generateTones = function generateTones(colorIndex, tonesCount){
 };
 
 Scheme.prototype.traverse = function traverse(fn){
-  this.colors.forEach((colorSet)=>{
-    fn(colorSet.base);
+  this.colors.forEach((colorSet, ii)=>{
+    fn(colorSet.base, ii, 'base');
     if(colorSet.shades && colorSet.shades.length > 0){
-      colorSet.shades.forEach(fn);
+      colorSet.shades.forEach((color, jj)=>{
+        fn(color, ii, 'shades', jj);
+      });
     }
 
     if(colorSet.tints && colorSet.tints.length > 0){
-      colorSet.tints.forEach(fn);
+      colorSet.tints.forEach((color, jj)=>{
+        fn(color, ii, 'tints', jj);
+      });
     }
 
     if(colorSet.tones && colorSet.tones.length > 0){
-      colorSet.tones.forEach(fn);
+      colorSet.tones.forEach((color, jj)=>{
+        fn(color, ii, 'tones', jj);
+      });
     }
   });
 };

@@ -22,7 +22,7 @@ $ npm install --save rainbowjs
 
 ### Browser via Brower
 ```
-$ bower install --save rainbowjs
+$ bower install --save rainbow-js
 ```
 RainbowJS is made with ES2015 (ES6) Vanilla JavaScript and has no dependencies.
 

@@ -8,7 +8,7 @@ function geometricProgression(iterations, ratio, endValue){
   currBlock = 1;
 
   if(endValue){ // Return only the last value
-    return Math.pow(ratio, iterations -1);
+    return Math.pow(ratio, iterations);
   }
   for(var ii = 0; ii < iterations; ii++){
     sequence.push(currBlock);

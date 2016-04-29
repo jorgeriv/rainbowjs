@@ -14,7 +14,7 @@ direction = true, // trule for positive, false for negative
 defaults = {
   dist: {
     fn: geometricProgression,
-    params: [count + 1, 0.3, true] // See geometric-progression.js
+    params: [count, 0.35, true] // See geometric-progression.js
   },
   invert: false
 };

@@ -15,7 +15,7 @@ function generateDistribution(config){
 
   config = config || {};
   config = Object.assign(defaults, config);
-  switch(config.type){
+  switch(config.fn){
     case 'analogous': fn = analogous;
     break;
     case 'complement': fn = complement;
