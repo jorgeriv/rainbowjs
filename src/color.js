@@ -212,4 +212,8 @@ Color.prototype.toJSON = function toJSON(){
   };
 };
 
+Color.prototype.toString = function toString(){
+  return '#' + this.hex();
+};
+
 module.exports = Color;

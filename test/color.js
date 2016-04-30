@@ -161,4 +161,9 @@ describe('Color object', ()=>{
     expect(clone).toEqual(color);
   });
 
+  it('should convert to string when coerced', ()=>{
+    let color = new Color();
+    expect(''+color).toBe('#ff0000');
+  });
+
 });
