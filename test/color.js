@@ -7,7 +7,7 @@ require('../src/color-scheme');
 
 describe('Color object', ()=>{
 
-  describe('instantiation',()=>{
+  describe('constructor',()=>{
     it('should create a new color object',()=>{
       let color = new Color();
       expect(color.r).toBe(255);
@@ -28,6 +28,26 @@ describe('Color object', ()=>{
       expect(color.r).toBe(config.r);
       expect(color.g).toBe(config.g);
       expect(color.b).toBe(config.b);
+    });
+
+    it('should accepet an hex string as initialization parameter', ()=>{
+      let hexString = '#ffffff',
+          color = new Color(hexString);
+
+      expect(color.name()).toBe(hexString);
+      expect(color.RGB().r).toBe(255);
+      expect(color.RGB().g).toBe(255);
+      expect(color.RGB().b).toBe(255);
+    });
+
+    it('should accepet a css color name as initialization parameter', ()=>{
+      let name = 'black',
+          color = new Color(name);
+
+      expect(color.name()).toBe(name);
+      expect(color.RGB().r).toBe(0);
+      expect(color.RGB().g).toBe(0);
+      expect(color.RGB().b).toBe(0);
     });
   });// <<< initialization
 
