@@ -21,7 +21,7 @@ it('should return only the last value', ()=>{
       ratio = 0.2,
       result = geometricProgression(iterations, ratio, true);
   expect(typeof result).toEqual('number');
-  expect(result).toEqual(Math.pow(0.2, iterations - 1));
+  expect(result).toEqual(Math.pow(0.2, iterations));
 });
 
 it('should return a geometric progression (array) with 8 values', ()=>{
