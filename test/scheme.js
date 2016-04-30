@@ -117,16 +117,14 @@ it('should clone the scheme',()=>{
   let scheme = new Scheme(),
       clone = scheme.clone();
 
-  expect(clone).toEqual(scheme);
+  expect(clone.toJSON()).toEqual(scheme.toJSON());
   expect(clone).not.toBe(scheme);
 });
-
-
 
 it('should return a JSON', ()=>{
   let scheme = new Scheme(),
   json = scheme.toJSON();
-  expect(json).toEqual({name:undefined,colors:[{base: new Color()}]});
+  expect(json).toEqual({name:undefined,colors:[{base: (new Color()).toJSON()}]});
 });
 
 it('should return a JSON string reprecenting the object', ()=>{
