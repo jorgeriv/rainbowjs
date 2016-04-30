@@ -123,6 +123,7 @@ Scheme.prototype.generate = function generate(){
     var auxColor = this.colors[0].base.clone();
     this.colors.push({base: auxColor.rotateHueWheel(angle)});
   });
+  return this;
 };
 
 Scheme.prototype.generateShades = function generateShades(colorIndex, shadesCount){
@@ -171,6 +172,26 @@ Scheme.prototype.generateTones = function generateTones(colorIndex, tonesCount){
     this.colors[colorIndex].tones = this.colors[colorIndex].base.getShades(tonesCount);
   }
   return this;
+};
+
+Scheme.prototype.color = function color(index, color){
+  let colors = [];
+  if(arguments.length === 0){ // return array of colors
+    this.colors.forEach((colorSet)=>{
+      colors.push(colorSet.base);
+    });
+  } else if(arguments.length === 1){ // return the color in the provided index
+    return this.colors[index].base;
+  } else { // set color
+    if(color instanceof Color){
+      this.colors[index].base = color;
+    } else{
+      this.colors[index].base = new Color(color);
+    }
+    return this;
+  }
+
+  return colors;
 };
 
 Scheme.prototype.mainColor = function mainColor(options){
