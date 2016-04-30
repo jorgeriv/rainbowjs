@@ -19,7 +19,7 @@ it('should return a distribution function given a name', ()=>{
       distribution = distGen(config);
 
   expect(distribution instanceof Array).toBe(true);
-  expect(distribution.length).toBe(3);
+  expect(distribution.length).toBe(2);
 });
 
 });
