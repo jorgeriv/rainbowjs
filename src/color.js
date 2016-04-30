@@ -4,7 +4,6 @@ const rgb2hsv = require('./color-operations/rgb2hsv');
 const hsv2rgb = require('./color-operations/hsv2rgb');
 const distGenerator = require('./distribution-generator');
 const colorPresets = require('./color-presets');
-const Scheme = require('./scheme');
 
 function Color(obj){
   let defaults = {
@@ -153,14 +152,6 @@ Color.prototype.getTones = function getTones(count, distType, options){
 
   //return new colors which are tones of original color
   return tones;
-};
-
-Color.prototype.createScheme = function createscheme(config){
-  let scheme = new Scheme({colors: [{base: this.toJSON()}]});
-  if(!config){
-    return scheme;
-  }
-  return scheme.configure(config).generate();
 };
 
 Color.prototype.name = function name(name){

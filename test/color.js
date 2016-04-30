@@ -2,6 +2,9 @@
 const Color = require('../src/color');
 const Scheme = require('../src/scheme');
 
+// Needed to avoid circular dependencies
+require('../src/color-scheme');
+
 describe('Color object', ()=>{
 
   describe('instantiation',()=>{
