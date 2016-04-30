@@ -133,4 +133,15 @@ it('should return a JSON string reprecenting the object', ()=>{
   expect(json).toBe(JSON.stringify({name:undefined,colors:[{base: new Color()}]}));
 });
 
+it('should get the main color of the scheme', ()=>{
+  let scheme = new Scheme();
+  expect(scheme.mainColor() instanceof Color).toBe(true);
+});
+
+it('should set the main color of the scheme', ()=>{
+  let color = new Color({name: 'test'}),
+      scheme = new Scheme();
+      scheme.mainColor(color);
+  expect(scheme.mainColor().name()).toBe(color.name());
+});
 });

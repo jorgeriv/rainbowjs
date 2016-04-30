@@ -173,6 +173,20 @@ Scheme.prototype.generateTones = function generateTones(colorIndex, tonesCount){
   return this;
 };
 
+Scheme.prototype.mainColor = function mainColor(options){
+  let newColor;
+  if(arguments.length === 0){
+    return this.colors[0].base;
+  }
+  if(options instanceof Color){
+    newColor = options;
+  } else {
+    newColor = new Color(options);
+  }
+  this.colors[0].base = newColor;
+  return this;
+};
+
 Scheme.prototype.traverse = function traverse(fn){
   this.colors.forEach((colorSet, ii)=>{
     fn(colorSet.base, ii, 'base');
