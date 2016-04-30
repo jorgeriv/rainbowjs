@@ -1,5 +1,6 @@
 'use strict';
 const Color = require('../src/color');
+const Scheme = require('../src/scheme');
 
 describe('Color object', ()=>{
 
@@ -116,30 +117,13 @@ describe('Color object', ()=>{
   });// <<< set individual color vaules
 
 
-describe('generate monochrome', ()=>{
-  it('should generate generate an array of shades', ()=>{
-    let color = new Color(),
-        shades = color.getShades(5);
-    expect(shades instanceof Array).toBe(true);
-    expect(shades.length).toBe(5);
+
+  it('should create a scheme instance from itself', ()=>{
+    let color = new Color();
+    let scheme = color.createScheme();
+    let isInstance = scheme instanceof Scheme;
+    expect(isInstance).toBe(true);
   });
-
-  it('should generate generate an array of tones', ()=>{
-    let color = new Color(),
-        tones = color.getTones(5);
-    expect(tones instanceof Array).toBe(true);
-    expect(tones.length).toBe(5);
-  });
-
-  it('should generate generate an array of tints', ()=>{
-    let color = new Color(),
-        thints = color.getShades(5);
-    expect(thints instanceof Array).toBe(true);
-    expect(thints.length).toBe(5);
-  });
-}); // <<< generate monochrome
-
-
   it('should convert object to an object to be stringifyied on JSON.stringify()', ()=>{
     let color = new Color();
 
