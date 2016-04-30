@@ -21,7 +21,7 @@ describe('instantiation', ()=>{
     scheme = new Scheme(config);
     expect(scheme.name()).toBe(config.name);
     expect(scheme.colors).toBeDefined();
-    expect(scheme.colors[0].base).toEqual((new Color()).toJSON());
+    expect(scheme.colors[0].base.toJSON()).toEqual((new Color()).toJSON());
   });
 });// <<< instantiation
 
