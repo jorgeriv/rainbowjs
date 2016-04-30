@@ -75,10 +75,16 @@ describe('modifiers', ()=>{
     expect(scheme.name()).toBe(name);
   });
 
-  it('should reset scheme to initial default values', ()=>{
+  it('should hard reset scheme to initial default values', ()=>{
+    let scheme = new Scheme({name: 'test'});
+    scheme.reset('hard');
+    expect(scheme.name()).toBeUndefined();
+  });
+
+  it('should soft reset scheme to initial default values', ()=>{
     let scheme = new Scheme({name: 'test'});
     scheme.reset();
-    expect(scheme.name()).toBeUndefined();
+    expect(scheme.name()).toBeDefined();
   });
 
   it('should rotate hue wheel of all colors', ()=>{
