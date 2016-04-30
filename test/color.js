@@ -1,9 +1,13 @@
 'use strict';
 const Color = require('../src/color');
+const Scheme = require('../src/scheme');
+
+// Needed to avoid circular dependencies
+require('../src/color-scheme');
 
 describe('Color object', ()=>{
 
-  describe('instantiation',()=>{
+  describe('constructor',()=>{
     it('should create a new color object',()=>{
       let color = new Color();
       expect(color.r).toBe(255);
@@ -24,6 +28,26 @@ describe('Color object', ()=>{
       expect(color.r).toBe(config.r);
       expect(color.g).toBe(config.g);
       expect(color.b).toBe(config.b);
+    });
+
+    it('should accepet an hex string as initialization parameter', ()=>{
+      let hexString = '#ffffff',
+          color = new Color(hexString);
+
+      expect(color.name()).toBe(hexString);
+      expect(color.RGB().r).toBe(255);
+      expect(color.RGB().g).toBe(255);
+      expect(color.RGB().b).toBe(255);
+    });
+
+    it('should accepet a css color name as initialization parameter', ()=>{
+      let name = 'black',
+          color = new Color(name);
+
+      expect(color.name()).toBe(name);
+      expect(color.RGB().r).toBe(0);
+      expect(color.RGB().g).toBe(0);
+      expect(color.RGB().b).toBe(0);
     });
   });// <<< initialization
 
@@ -116,30 +140,13 @@ describe('Color object', ()=>{
   });// <<< set individual color vaules
 
 
-describe('generate monochrome', ()=>{
-  it('should generate generate an array of shades', ()=>{
-    let color = new Color(),
-        shades = color.getShades(5);
-    expect(shades instanceof Array).toBe(true);
-    expect(shades.length).toBe(5);
+
+  it('should create a scheme instance from itself', ()=>{
+    let color = new Color();
+    let scheme = color.createScheme();
+    let isInstance = scheme instanceof Scheme;
+    expect(isInstance).toBe(true);
   });
-
-  it('should generate generate an array of tones', ()=>{
-    let color = new Color(),
-        tones = color.getTones(5);
-    expect(tones instanceof Array).toBe(true);
-    expect(tones.length).toBe(5);
-  });
-
-  it('should generate generate an array of tints', ()=>{
-    let color = new Color(),
-        thints = color.getShades(5);
-    expect(thints instanceof Array).toBe(true);
-    expect(thints.length).toBe(5);
-  });
-}); // <<< generate monochrome
-
-
   it('should convert object to an object to be stringifyied on JSON.stringify()', ()=>{
     let color = new Color();
 
@@ -152,6 +159,11 @@ describe('generate monochrome', ()=>{
         clone = color.clone();
 
     expect(clone).toEqual(color);
+  });
+
+  it('should convert to string when coerced', ()=>{
+    let color = new Color();
+    expect(''+color).toBe('#ff0000');
   });
 
 });

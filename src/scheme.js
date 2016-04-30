@@ -8,7 +8,6 @@ function Scheme(options){
   let that = this;
   options = options || {};
   this._name = options.name || undefined;
-  this.colors = [{}];
   function createColors(color, ii, key, jj){
     if(!jj){
       that.colors[ii][key] = new Color(color);
@@ -20,17 +19,30 @@ function Scheme(options){
     }
   }
   if(options.colors && (options.colors instanceof Array)){
+    this.colors = [{}];
     this.traverse.call(options, createColors);
   } else {
-    this.colors.push({base: new Color()});
+    this.colors = [{base: new Color()}];
   }
 }
 
 Scheme.prototype.toJSON = function toJSON(){
+  let colors = [{}];
+  function createColors(color, ii, key, jj){
+    if(!jj){
+      colors[ii][key] = color.toJSON();
+    } else {
+      if(!colors[ii][key]){
+        colors[ii][key] = [];
+      }
+      colors[ii][key][jj] = color.toJSON();
+    }
+  }
 
+  this.traverse(createColors);
   return {
     name: this._name,
-    colors: this.colors
+    colors: colors
   };
 };
 
@@ -111,6 +123,7 @@ Scheme.prototype.generate = function generate(){
     var auxColor = this.colors[0].base.clone();
     this.colors.push({base: auxColor.rotateHueWheel(angle)});
   });
+  return this;
 };
 
 Scheme.prototype.generateShades = function generateShades(colorIndex, shadesCount){
@@ -161,6 +174,40 @@ Scheme.prototype.generateTones = function generateTones(colorIndex, tonesCount){
   return this;
 };
 
+Scheme.prototype.color = function color(index, color){
+  let colors = [];
+  if(arguments.length === 0){ // return array of colors
+    this.colors.forEach((colorSet)=>{
+      colors.push(colorSet.base);
+    });
+  } else if(arguments.length === 1){ // return the color in the provided index
+    return this.colors[index].base;
+  } else { // set color
+    if(color instanceof Color){
+      this.colors[index].base = color;
+    } else{
+      this.colors[index].base = new Color(color);
+    }
+    return this;
+  }
+
+  return colors;
+};
+
+Scheme.prototype.mainColor = function mainColor(options){
+  let newColor;
+  if(arguments.length === 0){
+    return this.colors[0].base;
+  }
+  if(options instanceof Color){
+    newColor = options;
+  } else {
+    newColor = new Color(options);
+  }
+  this.colors[0].base = newColor;
+  return this;
+};
+
 Scheme.prototype.traverse = function traverse(fn){
   this.colors.forEach((colorSet, ii)=>{
     fn(colorSet.base, ii, 'base');
@@ -185,10 +232,7 @@ Scheme.prototype.traverse = function traverse(fn){
 };
 
 Scheme.prototype.clone = function clone(){
-  return new Scheme({
-    name: this._name,
-    colors: this.colors
-  });
+  return new Scheme(this.toJSON());
 };
 
 module.exports = Scheme;
