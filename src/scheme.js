@@ -27,10 +27,22 @@ function Scheme(options){
 }
 
 Scheme.prototype.toJSON = function toJSON(){
+  let colors = [{}];
+  function createColors(color, ii, key, jj){
+    if(!jj){
+      colors[ii][key] = color.toJSON();
+    } else {
+      if(!colors[ii][key]){
+        colors[ii][key] = [];
+      }
+      colors[ii][key][jj] = color.toJSON();
+    }
+  }
 
+  this.traverse(createColors);
   return {
     name: this._name,
-    colors: this.colors
+    colors: colors
   };
 };
 
@@ -185,10 +197,7 @@ Scheme.prototype.traverse = function traverse(fn){
 };
 
 Scheme.prototype.clone = function clone(){
-  return new Scheme({
-    name: this._name,
-    colors: this.colors
-  });
+  return new Scheme(this.toJSON());
 };
 
 module.exports = Scheme;
