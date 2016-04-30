@@ -1,6 +1,7 @@
 'use strict';
 const Color = require('../src/color');
 const Scheme = require('../src/scheme');
+require('../src/color-scheme');
 
 describe('Scheme', ()=>{
 
@@ -113,6 +114,37 @@ describe('modifiers', ()=>{
 
 });// <<< modifiers
 
+describe('colors getters and setters', ()=>{
+  it('should get the main color of the scheme', ()=>{
+    let scheme = new Scheme();
+    expect(scheme.mainColor() instanceof Color).toBe(true);
+  });
+
+  it('should set the main color of the scheme', ()=>{
+    let color = new Color({name: 'test'}),
+        scheme = new Scheme();
+        scheme.mainColor(color);
+    expect(scheme.mainColor().name()).toBe(color.name());
+  });
+
+  it('should get a color in the scheme given an index', ()=>{
+    let color = new Color('rebeccapurple'),
+        scheme = color.createScheme('triadic');
+    expect(scheme.color().length).toEqual(3);
+    expect(scheme.mainColor()).toEqual(scheme.color(0));
+    expect(scheme.mainColor()).toEqual(scheme.color()[0]);
+  });
+
+  it('should set a color given an index and a color', ()=>{
+    let scheme = (new Color('rebeccapurple')).createScheme('triadic');
+    scheme.color(0, 'violet');
+    scheme.color(1, new Color());
+    scheme.color(2, '#0ff0e1');
+    expect(scheme.color(0)).toEqual(new Color('violet'));
+    expect(scheme.color(1)).toEqual(new Color());
+    expect(scheme.color(2)).toEqual(new Color('#0ff0e1'));
+  });
+});// <<< colors getters and setters
 it('should clone the scheme',()=>{
   let scheme = new Scheme(),
       clone = scheme.clone();
@@ -133,15 +165,4 @@ it('should return a JSON string reprecenting the object', ()=>{
   expect(json).toBe(JSON.stringify({name:undefined,colors:[{base: new Color()}]}));
 });
 
-it('should get the main color of the scheme', ()=>{
-  let scheme = new Scheme();
-  expect(scheme.mainColor() instanceof Color).toBe(true);
-});
-
-it('should set the main color of the scheme', ()=>{
-  let color = new Color({name: 'test'}),
-      scheme = new Scheme();
-      scheme.mainColor(color);
-  expect(scheme.mainColor().name()).toBe(color.name());
-});
 });
