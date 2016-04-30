@@ -94,7 +94,7 @@ describe('modifiers', ()=>{
         hue = clone.colors[0].base.rotateHueWheel(angle).HSV().h;
 
     scheme.rotate(angle);
-    expect(scheme.colors[0].base.HSV().h).toEqual(hue - angle);
+    expect(scheme.colors[0].base.HSV().h).toEqual(hue);
   });
 
   it('should set the saturation value to all colors in the scheme',()=>{
