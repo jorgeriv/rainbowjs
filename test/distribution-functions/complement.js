@@ -14,7 +14,7 @@ it('should create an array with 3 complements', ()=>{
       result = complement(count);
   expect(result.length).toBe(count + 1); // 3 ccomplements + 1 base value
   expect(result[1]).toBe(0.5);
-  expect(result[2]).toBe(0.5 + Math.pow(0.3, 3));
+  expect(result[2]).toBe(0.5 + Math.pow(0.35, 3));
 });
 
 it('should accept a configuration object', ()=>{

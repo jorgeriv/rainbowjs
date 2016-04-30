@@ -8,7 +8,6 @@ function Scheme(options){
   let that = this;
   options = options || {};
   this._name = options.name || undefined;
-  this.colors = [{}];
   function createColors(color, ii, key, jj){
     if(!jj){
       that.colors[ii][key] = new Color(color);
@@ -20,9 +19,10 @@ function Scheme(options){
     }
   }
   if(options.colors && (options.colors instanceof Array)){
+    this.colors = [{}];
     this.traverse.call(options, createColors);
   } else {
-    this.colors.push({base: new Color()});
+    this.colors = [{base: new Color()}];
   }
 }
 

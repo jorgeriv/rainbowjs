@@ -12,8 +12,8 @@ it('should create an array with 1 element if no arguments are passed', ()=>{
 it('should create an array with 3 values', ()=>{
   let result = analogous(3);
   expect(result.length).toBe(3);
-  expect(result[1]).toBe(Math.pow(0.3, 3));
-  expect(result[2]).toBe(-1 * Math.pow(0.3, 3));
+  expect(result[1]).toBe(Math.pow(0.35, 3));
+  expect(result[2]).toBe(-1 * Math.pow(0.35, 3));
 });
 
 it('should accept a configuration object', ()=>{

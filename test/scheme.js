@@ -21,7 +21,7 @@ describe('instantiation', ()=>{
     scheme = new Scheme(config);
     expect(scheme.name()).toBe(config.name);
     expect(scheme.colors).toBeDefined();
-    expect(scheme.colors[0].base).toEqual((new Color()).toJSON());
+    expect(scheme.colors[0].base.toJSON()).toEqual((new Color()).toJSON());
   });
 });// <<< instantiation
 
@@ -75,10 +75,16 @@ describe('modifiers', ()=>{
     expect(scheme.name()).toBe(name);
   });
 
-  it('should reset scheme to initial default values', ()=>{
+  it('should hard reset scheme to initial default values', ()=>{
+    let scheme = new Scheme({name: 'test'});
+    scheme.reset('hard');
+    expect(scheme.name()).toBeUndefined();
+  });
+
+  it('should soft reset scheme to initial default values', ()=>{
     let scheme = new Scheme({name: 'test'});
     scheme.reset();
-    expect(scheme.name()).toBeUndefined();
+    expect(scheme.name()).toBeDefined();
   });
 
   it('should rotate hue wheel of all colors', ()=>{
@@ -88,7 +94,7 @@ describe('modifiers', ()=>{
         hue = clone.colors[0].base.rotateHueWheel(angle).HSV().h;
 
     scheme.rotate(angle);
-    expect(scheme.colors[0].base.HSV().h).toEqual(hue - angle);
+    expect(scheme.colors[0].base.HSV().h).toEqual(hue);
   });
 
   it('should set the saturation value to all colors in the scheme',()=>{
