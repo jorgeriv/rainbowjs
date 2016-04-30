@@ -40,7 +40,6 @@ const colorPresets = require('./color-presets');
 
   };
 
-
   Color.prototype.RGB = function RGB(r, g, b){
     if(arguments.length === 0){ // Get
       return {r: this.r, g: this.g, b: this.b};
@@ -53,7 +52,6 @@ const colorPresets = require('./color-presets');
     this.b = b;
     return this;
   };
-
 
   Color.prototype.hex = function hex(hexString){
     if(arguments.length === 0){
@@ -74,7 +72,6 @@ const colorPresets = require('./color-presets');
     this.RGB(r, g, b);
     return this;
   };
-
 
   Color.prototype.rotateHueWheel = function rotateHueWheel(angle){
     var hsv = this.HSV();
