@@ -5,18 +5,27 @@ const hsv2rgb = require('./color-operations/hsv2rgb');
 const distGenerator = require('./distribution-generator');
 const colorPresets = require('./color-presets');
 
-function Color(obj){
+function Color(config){
   let defaults = {
     r : 255,
     g : 0,
     b : 0
   };
-  obj = obj || {};
+  config = config || {};
 
-  this._name = obj.name;
-  this.r = obj.r || defaults.r;
-  this.g = obj.g || defaults.g;
-  this.b = obj.b || defaults.b;
+  if(typeof config === 'string'){
+    this._name = config;
+    let sIndex = config.search(/^#{1}[\da-f]{6}$/);
+    if(sIndex === 0){ // hex string
+        return this.hex(config.substr(1));
+    }
+    return this.cssName(config);
+  }
+
+  this._name = config.name;
+  this.r = config.r || defaults.r;
+  this.g = config.g || defaults.g;
+  this.b = config.b || defaults.b;
 }
 
 Color.prototype.HSV = function HSV(h, s, v){
@@ -41,23 +50,23 @@ Color.prototype.HSV = function HSV(h, s, v){
 };
 
 Color.prototype.RGB = function RGB(r, g, b){
+  let rgb = {r: 255, g: 0, b: 0};
   if(arguments.length === 0){ // Get
     return {r: this.r, g: this.g, b: this.b};
   } // Set
-  r = r || this.r;
-  g = g || this.g;
-  b = b || this.b;
-  this.r = r;
-  this.g = g;
-  this.b = b;
+  rgb = Object.assign(rgb, {r: this.r, g:this.g, b:this.b}, {r:r, g:g, b:b});
+
+  this.r = rgb.r;
+  this.g = rgb.g;
+  this.b = rgb.b;
   return this;
 };
 
 Color.prototype.hex = function hex(hexString){
   if(arguments.length === 0){
     let hr = this.r.toString(16),
-    hg = this.g.toString(16),
-    hb = this.b.toString(16);
+        hg = this.g.toString(16),
+        hb = this.b.toString(16);
     // Ussing two places to represent each number
     hr = hr.length < 2 ? '0' + hr : hr;
     hg = hg.length < 2 ? '0' + hg : hg;
@@ -66,8 +75,8 @@ Color.prototype.hex = function hex(hexString){
     return hr + hg + hb;
   }
   let r = parseInt(hexString.substr(0, 2), 16),
-  g = parseInt(hexString.substr(2, 2), 16),
-  b = parseInt(hexString.substr(4, 2), 16);
+      g = parseInt(hexString.substr(2, 2), 16),
+      b = parseInt(hexString.substr(4, 2), 16);
 
   this.RGB(r, g, b);
   return this;
@@ -176,7 +185,7 @@ Color.prototype.cssName = function cssName(name){
   } // Set behavior
   hexString = colorPresets[name];
   if(typeof hexString === 'string'){
-    this._name = name;
+    this._name = this._name || name;
     this.hex(hexString);
   } else{
     throw new Error(`color ${name} is not defined`);
